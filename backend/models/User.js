@@ -18,6 +18,8 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
     }
+}, {
+    timestamps: true
 });
 
 //hash the password before saving

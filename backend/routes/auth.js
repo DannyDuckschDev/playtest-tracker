@@ -1,7 +1,7 @@
 //backend/routes/auth.js
 const express = require('express');
 const router = express.Router();
-const jwt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 require('dotenv').config(); // load environment variable
 
