@@ -33,4 +33,46 @@ describe('Auth Endpoints', () => { //group of tests for authenficiation-endpoint
         expect(res.statusCode).toEqual(200); // expected the status code to be 200
         expect(res.body).toHaveProperty('token'); //expected that the response includes a token
     });
+
+    it('should login an existing user', async () => {
+        await User.create({
+            username: 'testuser',
+            email: 'test@example.com',
+            password: 'password123',
+        });
+        
+        const res = await request(app)
+            .post('/api/auth/login')
+            .send({
+                email: 'test@example.com',
+                password: 'password123'
+            });
+
+        console.log(res.body);
+        expect(res.statusCode).toEqual(200);
+        expect(res.body).toHaveProperty('token');
+    });
+
+    it('should not allow registering a fuser with an existing email', async () => {
+        //Register the first user
+        await request(app)
+            .post('/api/auth/register')
+            .send({
+                username: "username",
+                email: "test@example.com",
+                password: 'password123'
+            });
+        
+        //Attempt to register the same email again
+        const res = await request(app)
+            .post('/api/auth/register')
+            .send({
+                username: "testuser2",
+                email: "test@example.com", //Same email as before
+                password: 'password123'
+            });
+        console.log(res.body);
+        expect(res.statusCode).toEqual(400); //Expecting a failure due to existing email
+        expect(res.body).toHaveProperty('msg', 'User already exists'); //The expected error message
+    });
 });
