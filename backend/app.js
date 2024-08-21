@@ -1,34 +1,39 @@
-//Import the express modul
-const express = require('express');
-const { connectDB, sequelize } = require('./config/db'); //Import the database connection function
+// backend/app.js
 
-//Creat express app
+//Import the express modul to create a server
+const express = require('express');
+const { connectDB, syncDB } = require('./config/db'); //Import the database connection function and the Sequelize instance
+
+
+//Creat an instance of an Express application
 const app = express();
 
 //Define the port, where the server should run
 const port = 3000;
 
-//Connet to database
+//Establish a connection to the database
 connectDB();
 
-//Middleware
-app.use(express.json({ extended: false })); //Middleware to parse JSON requsts
+//Middleware to parse income JSON requests
+app.use(express.json({ extended: false })); 
 
-//Routs
-app.use('/api/auth', require('./routes/auth')); //Use the authentification routes
+//Define the route for authentification-related API entpoints
+app.use('/api/surveys', require('./routes/surveyRoutes')); //Ensure this route is set up for your surveys
 
-//Create simple Route for start page
+//Define a simple route for the root URL to check if the server is running
 app.get('/', (req, res) => {
-    res.send('Hello World!'); //Simple route to check if the server is running
+    res.send('Hello World!'); 
 });
 
+//Start the server and sync the database
 if (process.env.NODE_ENV !== 'test') {
     app.listen(port, async () => {
         console.log(`Server running at http://localhost: ${port}`);
-        await sequelize.sync(); //Syncronize the database
+        await syncDB(); //Synchronize the entire database schema, including all models
     });
 } else {
-    sequelize.sync(); //Synchronize the database for tests
+    syncDB(); //Synchronize the database when running tests
 }
 
+//Export the app instance for testing or further usage
 module.exports = app;

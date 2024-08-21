@@ -13,6 +13,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     },
 });
 
+//Function to authenticate the database connetion
 const connectDB = async () => {
     try {
         await sequelize.authenticate();
@@ -22,4 +23,14 @@ const connectDB = async () => {
     }
 };
 
-module.exports = {sequelize, connectDB};
+//Function to synchronize the models with the database
+const syncDB = async () => {
+    try {
+        await sequelize.sync({ force: false }); // 'force: true' will dropt and recreate the tables
+        console.log('Database synchronized successfully.');
+    } catch (error) {
+        console.log('Error synchronizing the database:', error);
+    }
+};
+
+module.exports = {sequelize, connectDB, syncDB};
