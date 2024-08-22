@@ -17,6 +17,9 @@ connectDB();
 //Middleware to parse income JSON requests
 app.use(express.json({ extended: false })); 
 
+//Define the route for authentication-related API endpoints
+app.use('/api/auth', require('./routes/authRoutes'));
+
 //Define the route for authentification-related API entpoints
 app.use('/api/surveys', require('./routes/surveyRoutes')); //Ensure this route is set up for your surveys
 

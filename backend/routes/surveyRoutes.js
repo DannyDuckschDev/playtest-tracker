@@ -10,7 +10,7 @@ const Survey = require('../models/Survey');
 //Route to create a new survey
 router.post('/create', async (req, res) => {
     try {
-        console.log('Received data:', req.body); //log received data
+        //console.log('Received data:', req.body); //log received data
         const { title, description, questions, createdBy } = req.body;
 
         //Create a new survey using the data from the request
@@ -59,7 +59,6 @@ router.get('/:id', async (req, res) => {
 //Route to update an existing survey
 router.put('/:id', async (req, res) => {
     try {
-
         const { title, description, questions } = req.body;
 
         //Find the survey to update
@@ -68,7 +67,6 @@ router.put('/:id', async (req, res) => {
 
         if (!survey) {
             return res.status(404).json({ msg: 'Survey not found'});
-
         } 
         
         //Update the survey with the new data
