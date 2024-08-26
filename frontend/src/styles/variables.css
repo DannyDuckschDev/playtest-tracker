@@ -1,0 +1,18 @@
+/* src/styles/variables.css*/
+/* Color Variables */
+:root {
+  --primary-color: #d35400; /* Primary color: Matsch-Orange */
+  --primary-color-hover: #e67e22; /* Slightly darker orange for hover */
+  --secondary-color: #1abc9c; /* Teal for secondary elements */
+  --accent-color: #2980b9; /* Accent color: Blue for important elements */
+  --warning-color: #c0392b; /* Warning color: Dark red for errors */
+  
+  /* Background and Text Colors */
+  --background-color: #1e1e1e; /* Background color: Dark gray/black, energy-efficient */
+  --text-color: #ecf0f1; /* Text color: Light gray/white for readability */
+  
+  /* Spacing Variables */
+  --spacing-small: 0.5rem; /* Small spacing (8px) */
+  --spacing-medium: 1rem; /* Medium spacing (16px) */
+  --spacing-large: 1.5rem; /* Large spacing (24px) */
+}
