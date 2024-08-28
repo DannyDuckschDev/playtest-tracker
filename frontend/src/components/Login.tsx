@@ -9,6 +9,7 @@ import { useLogin } from "../hooks/useLogin";
 const Login: React.FC = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ submitted, setSubmitted ] = useState(false);
     const { login, error } = useLogin();
 
     const { errors, validateForm, handleFieldChange } = useFormvalidation({
@@ -18,6 +19,7 @@ const Login: React.FC = () => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        setSubmitted(true);
 
         const isValid = validateForm({ email, password });
 
@@ -40,11 +42,16 @@ const Login: React.FC = () => {
         } 
     };
 
+    const handleChange = (name: string, value: string, setValue: React.Dispatch<React.SetStateAction<string>>) => {
+        setSubmitted(false);
+        handleFieldChange(name, value, setValue);
+    };
+
     return (
         <div className="login-container">
             <form onSubmit={handleSubmit}>
                 <h2>Login</h2>
-                {error && <p className="error">{error}</p>}
+                {submitted && error && <p className="error">{error}</p>}
                 <div>
                     <label htmlFor="email" className="form-label">Email</label>
                     <input 
@@ -52,7 +59,7 @@ const Login: React.FC = () => {
                         id="email"
                         className="form-control"
                         value={email}
-                        onChange={(e) => handleFieldChange('email', e.target.value, setEmail)}
+                        onChange={(e) => handleChange('email', e.target.value, setEmail)}
                         required
                     />
                     {errors.email && <p className="error">{errors.email}</p>}
@@ -64,7 +71,7 @@ const Login: React.FC = () => {
                         id="password"
                         className="form-control"
                         value={password}
-                        onChange={(e) => handleFieldChange('password', e.target.value, setPassword)}
+                        onChange={(e) => handleChange('password', e.target.value, setPassword)}
                         required
                     />
                     {errors.password && <p className="error">{errors.password}</p>}

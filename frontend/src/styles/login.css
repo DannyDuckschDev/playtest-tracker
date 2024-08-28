@@ -52,3 +52,10 @@ h2 {
     border-color: var(--primary-color-hover);
     box-shadow: 0 0 0 0.2rem rgba(229, 142, 38, 0.5);
 }
+
+.error {
+    box-shadow: 0 0 0 0.2rem rgba(192, 57, 43, 0.5);
+    color: var(--warning-color);
+    padding: var(--spacing-small);
+    border-radius: 8px;
+}

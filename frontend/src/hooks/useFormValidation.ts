@@ -5,7 +5,7 @@ import { useState } from "react";
 type ValidationRules = {
     required?: boolean;
     minLength?: number;
-    maxLengh?: number;
+    maxLength?: number;
     pattern?: RegExp;
 };
 
@@ -29,11 +29,11 @@ export const useFormvalidation = (validators: FieldValidators) => {
             }
 
             if (rules.minLength && value.length < rules.minLength) {
-                return 'Must be at least ${rules.length} characters long';
+                return `Must be at least ${rules.minLength} characters long`;
             }
 
-            if (rules.maxLengh && value.length > rules.maxLengh) {
-                return 'Must be less than ${rules.maxLength} characters';
+            if (rules.maxLength && value.length > rules.maxLength) {
+                return `Must be less than ${rules.maxLength} characters`;
             }
 
             if (rules.pattern && !rules.pattern.test(value)) {
