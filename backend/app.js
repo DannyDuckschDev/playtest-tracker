@@ -3,6 +3,7 @@
 //Import the express modul to create a server
 const express = require('express');
 const { connectDB, syncDB } = require('./config/db'); //Import the database connection function and the Sequelize instance
+const cors = require('cors'); //Import CORS-Middleware
 
 
 //Creat an instance of an Express application
@@ -13,6 +14,13 @@ const port = 3000;
 
 //Establish a connection to the database
 connectDB();
+
+//Use CORS Middleware
+app.use(cors({
+    origin: 'http://localhost:5173', //Allow requests from the frontend
+    methods: [ 'GET', 'POST', 'PUT', 'DELETE'], //Allowed HTTP methods
+    allowedHeaders: [ 'Content-Type', 'Authorization'], //Allowed headers
+}));
 
 //Middleware to parse income JSON requests
 app.use(express.json({ extended: false })); 
