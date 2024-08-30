@@ -2,13 +2,16 @@
 /* Color Variables */
 :root {
   --primary-color: #d35400; /* Primary color: Matsch-Orange */
-  --primary-color-hover: #e67e22; /* Slightly darker orange for hover */
+  --primary-color-hover: #d66b44; /* Slightly darker orange for hover backup color: #e67e22, another backup-color: #FFA500;  */
   --secondary-color: #1abc9c; /* Teal for secondary elements */
   --accent-color: #2980b9; /* Accent color: Blue for important elements */
   --warning-color: #c0392b; /* Warning color: Dark red for errors */
   
   /* Background and Text Colors */
   --background-color: #1e1e1e; /* Background color: Dark gray/black, energy-efficient */
+  --background-color-contrast-light: #d3d3d3;
+  --background-color-highlight: #ffa07a; 
+  --background-color-secondary: #ff7f50;
   --text-color: #ecf0f1; /* Text color: Light gray/white for readability */
   
   /* Spacing Variables */
@@ -17,5 +20,8 @@
   --spacing-large: 1.5rem; /* Large spacing (24px) */
 
   /*error messages*/
+
+  /*box-shadow*/
+  --box-shadow-primary:  0 0 0 0.2rem rgba(211, 84, 38, 0.75);
   
 }

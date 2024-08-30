@@ -1,0 +1,74 @@
+.auth-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.auth-left {
+    flex: 1; 
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center; /* Center content */
+    align-items: center; /* center content vertical */
+}
+
+.auth-right {
+    flex: 2; /* takes up more space that auth-left*/
+    background-color: var(--background-color-contrast-light);
+    display: flex;
+    justify-content: center; /* center registration form horizontal */
+    align-items: center; /* center registration form vertical */
+}
+
+
+h2 {
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: var(--spacing-medium);
+}
+
+form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    color: var(--text-color);
+}
+
+.form-control {
+    border: 2px solid var(--primary-color);
+    margin-bottom: var(--spacing-medium);
+}
+
+.form-control:focus{
+    border-color: var(--primary-color);
+    box-shadow: var(--box-shadow-primary);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    align-self: center;
+    margin: var(--spacing-medium) 0;
+    width: 70%;
+}
+
+.btn-primary:focus,
+.btn-primary:hover {
+    background-color: var(--primary-color-hover);
+    border-color: var(--primary-color);
+    box-shadow: var(--box-shadow-primary);
+}
+
+.error {
+    box-shadow: 0 0 0 0.2rem rgba(192, 57, 43, 0.5);
+    color: var(--warning-color);
+    padding: var(--spacing-small);
+    border-radius: 8px;
+}

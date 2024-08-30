@@ -1,0 +1,10 @@
+/* src/styles/register.css */
+@import './variables.css';
+
+.register-container {
+    background-color: var(--background-color-highlight);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 60%;
+}
+
