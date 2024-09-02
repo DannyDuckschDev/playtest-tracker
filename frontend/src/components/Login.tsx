@@ -5,17 +5,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/login.css';
 import { useFormvalidation } from "../hooks/useFormValidation";
 import { useLogin } from "../hooks/useLogin";
+import { usePasswordToggle } from "../hooks/usePasswordToggle";
+
+// Importiere FontAwesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Login: React.FC = () => {
-    const [ email, setEmail ] = useState('');
-    const [ password, setPassword ] = useState('');
-    const [ submitted, setSubmitted ] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [submitted, setSubmitted] = useState(false);
     const { login, error } = useLogin();
 
     const { errors, validateForm, handleFieldChange } = useFormvalidation({
         email: { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
-        password: { required: true, minLength: 6},
+        password: { required: true, minLength: 6 },
     });
+
+    // Verwende die Hook, um die Sichtbarkeit des Passworts umzuschalten
+    const [passwordType, togglePasswordVisibility] = usePasswordToggle();
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -29,17 +37,17 @@ const Login: React.FC = () => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status ${response.status}`);
                 }
-                
+
                 console.log('Login successful');
-                // Forwarding or other actions after successful login
+                // Weiterleiten oder andere Aktionen nach erfolgreichem Login
             } catch (error) {
                 if (error instanceof Error) {
                     console.error("Login error:", error.message);
                 } else {
                     console.error("An unexpected error occurred:", error);
-                } 
+                }
             }
-        } 
+        }
     };
 
     const handleChange = (name: string, value: string, setValue: React.Dispatch<React.SetStateAction<string>>) => {
@@ -64,16 +72,19 @@ const Login: React.FC = () => {
                     />
                     {errors.email && <p className="error">{errors.email}</p>}
                 </div>
-                <div>
+                <div className="login-password-input-container">
                     <label htmlFor="password" className="form-label">Password</label>
                     <input 
-                        type="password"
+                        type={passwordType}  // Dynamischer Input-Typ (text oder password)
                         id="password"
                         className="form-control"
                         value={password}
                         onChange={(e) => handleChange('password', e.target.value, setPassword)}
                         required
                     />
+                    <span className="password-toggle-icon" onClick={togglePasswordVisibility}>
+                        <FontAwesomeIcon icon={passwordType === "password" ? faEyeSlash : faEye} />
+                    </span>
                     {errors.password && <p className="error">{errors.password}</p>}
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>

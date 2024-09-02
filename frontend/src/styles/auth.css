@@ -72,3 +72,10 @@ form {
     padding: var(--spacing-small);
     border-radius: 8px;
 }
+
+.success {
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 1rem;
+    background: var(--background-color-secondary);
+}

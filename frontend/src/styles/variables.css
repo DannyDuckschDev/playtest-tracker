@@ -11,7 +11,8 @@
   --background-color: #1e1e1e; /* Background color: Dark gray/black, energy-efficient */
   --background-color-contrast-light: #d3d3d3;
   --background-color-highlight: #ffa07a; 
-  --background-color-secondary: #ff7f50;
+  --background-color-primary: #ff7f50;
+  --background-color-secondary: #1abc9c64;
   --text-color: #ecf0f1; /* Text color: Light gray/white for readability */
   
   /* Spacing Variables */

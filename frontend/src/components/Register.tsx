@@ -1,19 +1,21 @@
 // src/components/Register.tsx
 
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap styles for basic styling
-import '../styles/register.css'; // Import custom styles for the Register component
-import { useFormvalidation } from "../hooks/useFormValidation"; // Import the custom form validation hook
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/register.css';
+import { useFormvalidation } from "../hooks/useFormValidation";
+import { usePasswordToggle } from "../hooks/usePasswordToggle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-// Define the Register component, which manages the user registration process
 const Register: React.FC = () => {
-    // State variables to manage form inputs
     const [username, setUsername] = useState<string>('');
-    const [email, setEmail] = useState<string | undefined>();
-    const [password, setPassword] = useState<string | undefined>();
-    const [confirmPassword, setConfirmPassword] = useState<string | undefined>();
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<boolean>(false);
 
-    // Destructure validation functions and errors from the custom hook
     const { errors, validateForm, handleFieldChange } = useFormvalidation({
         username: { required: true },
         email: { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
@@ -24,16 +26,38 @@ const Register: React.FC = () => {
         },
     });
 
-    // Handle form submission
+    const [passwordType, togglePasswordVisibility] = usePasswordToggle();
+    const [confirmPasswordType, toggleConfirmedPasswordVisibility] = usePasswordToggle();
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        // Validate the entire form
         const isValid = validateForm({ username, email, password, confirmPassword });
 
         if (isValid) {
-            // Implement the registration logic here
-            console.log("Registration successful");
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, email, password }),
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    setError(errorData.msg || 'An error occurred during registration.');
+                    return;
+                }
+
+                setSuccess(true);
+                setError(null);
+                console.log('Registration successful');
+
+            } catch (err) {
+                setError('An unexpected error occurred. Please try again.');
+                console.error('Registration error:', err);
+            }
         }
     };
 
@@ -41,11 +65,13 @@ const Register: React.FC = () => {
         <div className="register-container">
             <form onSubmit={handleSubmit}>
                 <h2>Register</h2>
+                {error && <p className="error">{error}</p>}
+                {success && <p className="success">Registration successful! You can now log in.</p>}
                 <div>
-                    <label htmlFor="username" className="form-label">Username</label>
+                    <label htmlFor="register-username" className="form-label">Username</label>
                     <input 
                         type="text"
-                        id="username"
+                        id="register-username"
                         className="form-control"
                         value={username}
                         onChange={(e) => handleFieldChange('username', e.target.value, setUsername)}
@@ -54,10 +80,10 @@ const Register: React.FC = () => {
                     {errors.username && <p className="errors">{errors.username}</p>}
                 </div>
                 <div>
-                    <label htmlFor="email" className="form-label">Email</label>
+                    <label htmlFor="register-email" className="form-label">Email</label>
                     <input 
                         type="email"
-                        id="email"
+                        id="register-email"
                         className="form-control"
                         value={email}
                         onChange={(e) => handleFieldChange('email', e.target.value, setEmail)}
@@ -66,27 +92,37 @@ const Register: React.FC = () => {
                     {errors.email && <p className="error">{errors.email}</p>}
                 </div>
                 <div>
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input 
-                        type="password"
-                        id="password"
-                        className="form-control"
-                        value={password}
-                        onChange={(e) => handleFieldChange('password', e.target.value, setPassword)}
-                        required
-                    />
+                    <label htmlFor="register-password" className="form-label">Password</label>
+                    <div className="password-input-container">
+                        <input 
+                            type={passwordType}
+                            id="register-password"
+                            className="form-control"
+                            value={password}
+                            onChange={(e) => handleFieldChange('password', e.target.value, setPassword)}
+                            required
+                        />
+                        <span className="password-toggle-icon" onClick={togglePasswordVisibility}>
+                            <FontAwesomeIcon icon={passwordType === "password" ? faEyeSlash : faEye} />
+                        </span>
+                    </div>
                     {errors.password && <p className="error">{errors.password}</p>}
                 </div>
                 <div>
-                    <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-                    <input 
-                        type="password"
-                        id="confirmPassword"
-                        className="form-control"
-                        value={confirmPassword}
-                        onChange={(e) => handleFieldChange('confirmPassword', e.target.value, setConfirmPassword)}
-                        required
-                    />
+                    <label htmlFor="register-confirmPassword" className="form-label">Confirm Password</label>
+                    <div className="password-input-container">
+                        <input 
+                            type={confirmPasswordType}
+                            id="register-confirmPassword"
+                            className="form-control"
+                            value={confirmPassword}
+                            onChange={(e) => handleFieldChange('confirmPassword', e.target.value, setConfirmPassword)}
+                            required
+                        />
+                        <span className="password-toggle-icon" onClick={toggleConfirmedPasswordVisibility}>
+                            <FontAwesomeIcon icon={confirmPasswordType === "password" ? faEyeSlash : faEye} />
+                        </span>
+                    </div>
                     {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>

@@ -6,5 +6,41 @@
     padding: 2rem;
     border-radius: 8px;
     width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+form {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* src/styles/register.css */
+
+/* Container für das Input-Feld und das Symbol */
+.password-input-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Styling für das Input-Feld */
+.password-input-container .form-control {
+    width: 100%;
+    padding-right: 40px; /* Platz schaffen für das Symbol */
+}
+
+/* Styling für das Passwort-Symbol */
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666; /* Farbe des Symbols */
+}
+
+/* Optional: Symbolfarbe bei Hover */
+.password-toggle-icon:hover {
+    color: #333; /* Farbe des Symbols bei Hover */
+}
