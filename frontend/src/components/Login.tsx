@@ -72,19 +72,21 @@ const Login: React.FC = () => {
                     />
                     {errors.email && <p className="error">{errors.email}</p>}
                 </div>
-                <div className="login-password-input-container">
+                <div>
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input 
-                        type={passwordType}  // Dynamischer Input-Typ (text oder password)
-                        id="password"
-                        className="form-control"
-                        value={password}
-                        onChange={(e) => handleChange('password', e.target.value, setPassword)}
-                        required
-                    />
-                    <span className="password-toggle-icon" onClick={togglePasswordVisibility}>
-                        <FontAwesomeIcon icon={passwordType === "password" ? faEyeSlash : faEye} />
-                    </span>
+                    <div className="password-input-container">
+                        <input 
+                            type={passwordType} 
+                            id="password"
+                            className="form-control"
+                            value={password}
+                            onChange={(e) => handleChange('password', e.target.value, setPassword)}
+                            required
+                        />
+                        <span className="password-toggle-icon" onClick={togglePasswordVisibility}>
+                            <FontAwesomeIcon icon={passwordType === "password" ? faEyeSlash : faEye} />
+                        </span>
+                    </div>
                     {errors.password && <p className="error">{errors.password}</p>}
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>

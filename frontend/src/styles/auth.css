@@ -79,3 +79,23 @@ form {
     padding: 1rem;
     background: var(--background-color-secondary);
 }
+
+/* Responsive Layout for smaller screens */
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column; /* Stack the components vertically */
+    }
+    .auth-left, .auth-right {
+        flex: none;
+        width: 100%;
+        min-height: auto;
+    }
+
+    .login-container {
+        min-height: 70vh;
+    }
+    .register-container {
+        width: 85%;
+        margin: 3rem;
+    }
+}

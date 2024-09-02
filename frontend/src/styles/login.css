@@ -8,30 +8,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     background-color: var(--background-color);
     padding: var(--spacing-large);
+    width: 80%;
 }
 
 
 /* Container for the input field and the icon */
-.login-password-input-container {
+.password-input-container {
     position: relative;
     width: 100%;
-    height: 100px;
 }
 
 /* Styling for the input field */
 .password-input-container .form-control {
     width: 100%;
-    padding-right: 60px; /* Create space for the icon */
+    padding-right: 40px; /* Create space for the icon */
 }
 
-/* Styling for the password toggle icon */
+/* Styling für das Passwort-Symbol */
 .password-toggle-icon {
     position: absolute;
     top: 50%;
-    right: 20px;
+    right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
     color: #666; /* Icon color */
@@ -40,4 +39,11 @@
 /* Optional: Change icon color on hover */
 .password-toggle-icon:hover {
     color: #333; /* Icon color on hover */
+}
+
+/* Error message styling */
+.error {
+    margin-top: 5px; 
+    color: var(--warning-color);
+    font-size: 0.9em; 
 }

@@ -1,5 +1,4 @@
 // src/components/AuthPage.tsx
-
 import React from "react";
 import Login from "./Login"; // Import the Login component
 import Register from "./Register"; // Import the Register component
