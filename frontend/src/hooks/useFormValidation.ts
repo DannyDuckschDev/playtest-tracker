@@ -9,6 +9,7 @@ type ValidationRules = {
     maxLength?: number; // Maximum length of the input value
     pattern?: RegExp; // Regular expression pattern the value should match
     validate?: (value: string) => string | boolean; // Custom validation function
+
 };
 
 // Define the structure for holding validation errors
@@ -21,9 +22,25 @@ type FieldValidators = {
     [field: string]: ValidationRules;
 };
 
+type ValidationOptions = {
+    validatePasswordComplexity?: boolean;
+}
 // Custom hook to handle form validation
-export const useFormvalidation = (validators: FieldValidators) => {
+export const useFormvalidation = (
+    validators: FieldValidators,
+    options: ValidationOptions = {}
+) => {
     const [errors, setErrors] = useState<ValidationErrors>({});
+
+    //Function to validate password
+    const validatePasswordComplexity = (password: string): string | boolean => {
+        if (password.length < 8) return "Must be at least 8 characters long";
+        if (!/[A-Z]/.test(password)) return "Must contain at least one uppercase letter";
+        if (!/[a-z]/.test(password)) return "Must contain at least one lowercase letter";
+        if (!/[0-9]/.test(password)) return "Must contain at least one number";
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) return "Must at least contain one special character";
+        return true;
+    };
 
     // Function to validate a single field based on its rules
     const validateField = (name: string, value: string | undefined): string | null => {
@@ -57,6 +74,14 @@ export const useFormvalidation = (validators: FieldValidators) => {
                     return validationResult;
                 } else if (validationResult === false) {
                     return "Validation failed";
+                }
+            }
+
+            //Custom password complexity validation
+            if (name === 'password' && options?.validatePasswordComplexity) {
+                const paswordValidationResult = validatePasswordComplexity(value || '');
+                if (typeof paswordValidationResult === "string") {
+                    return paswordValidationResult;
                 }
             }
         }

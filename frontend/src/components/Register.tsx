@@ -15,11 +15,12 @@ const Register: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<boolean>(false);
+    const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
 
     const { errors, validateForm, handleFieldChange } = useFormvalidation({
         username: { required: true },
         email: { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
-        password: { required: true, minLength: 6 },
+        password: { required: true, minLength: 8 },
         confirmPassword: {
             required: true,
             validate: (value: string) => value === password || "Passwords must match",
@@ -28,6 +29,14 @@ const Register: React.FC = () => {
 
     const [passwordType, togglePasswordVisibility] = usePasswordToggle();
     const [confirmPasswordType, toggleConfirmedPasswordVisibility] = usePasswordToggle();
+
+    const passwordCriteria = [
+        {rule: "Must be at least 8 characters long", isValid: password.length >= 8 },
+        {rule: "Must contain at least one uppercase letter", isValid: /[A-Z]/.test(password)},
+        {rule: "Must contain at least one lowercase letter", isValid: /[a-z]/.test(password)},
+        {rule: "Must contain at least one number", isValid: /[0-9]/.test(password)},
+        {rule: "Must contain at least one special character", isValid: /[!@#$%^&*(),.?":{}|<>]/.test(password)}
+    ];
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -99,6 +108,8 @@ const Register: React.FC = () => {
                             id="register-password"
                             className="form-control"
                             value={password}
+                            onFocus={() => setIsPasswordFocused(true)}
+                            onBlur={() => setIsPasswordFocused(false)}
                             onChange={(e) => handleFieldChange('password', e.target.value, setPassword)}
                             required
                         />
@@ -106,6 +117,15 @@ const Register: React.FC = () => {
                             <FontAwesomeIcon icon={passwordType === "password" ? faEyeSlash : faEye} />
                         </span>
                     </div>
+                    {isPasswordFocused && (
+                        <ul className="password-criteria-list">
+                            {passwordCriteria.map((criteria, index) => (
+                                <li key={index} className={criteria.isValid ? "valid" : "invalid"}>
+                                    {criteria.rule}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                     {errors.password && <p className="error">{errors.password}</p>}
                 </div>
                 <div>

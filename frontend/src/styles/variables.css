@@ -6,6 +6,7 @@
   --secondary-color: #1abc9c; /* Teal for secondary elements */
   --accent-color: #2980b9; /* Accent color: Blue for important elements */
   --warning-color: #c0392b; /* Warning color: Dark red for errors */
+  --validation-color: #7d54d5; /*Validation color: bluish-violet */
   
   /* Background and Text Colors */
   --background-color: #1e1e1e; /* Background color: Dark gray/black, energy-efficient */

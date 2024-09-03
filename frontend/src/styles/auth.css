@@ -1,3 +1,5 @@
+/* src/style/auth.css*/
+
 .auth-container {
     display: flex;
     justify-content: space-between;
@@ -7,12 +9,14 @@
     box-sizing: border-box;
 }
 
+
 .auth-left {
     flex: 1; 
     background-color: var(--background-color);
     display: flex;
     justify-content: center; /* Center content */
     align-items: center; /* center content vertical */
+    max-width: 600px;
 }
 
 .auth-right {
@@ -21,6 +25,9 @@
     display: flex;
     justify-content: center; /* center registration form horizontal */
     align-items: center; /* center registration form vertical */
+    max-width: 800px;
+    overflow-y: auto;
+    padding-top: 3rem;
 }
 
 
@@ -80,6 +87,13 @@ form {
     background: var(--background-color-secondary);
 }
 
+@media (min-width: 768px) {
+    .register-container {
+        transform: scale(0.85); /* Skaliert das gesamte Formular */
+        transform-origin: center; /* Setzt den Ursprung der Skalierung */
+    }
+}
+
 /* Responsive Layout for smaller screens */
 @media (max-width: 768px) {
     .auth-container {
@@ -96,6 +110,5 @@ form {
     }
     .register-container {
         width: 85%;
-        margin: 3rem;
     }
 }

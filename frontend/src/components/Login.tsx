@@ -19,8 +19,8 @@ const Login: React.FC = () => {
 
     const { errors, validateForm, handleFieldChange } = useFormvalidation({
         email: { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
-        password: { required: true, minLength: 6 },
-    });
+        password: { required: true, minLength: 8 }, 
+    }, {validatePasswordComplexity: false});
 
     // Verwende die Hook, um die Sichtbarkeit des Passworts umzuschalten
     const [passwordType, togglePasswordVisibility] = usePasswordToggle();
