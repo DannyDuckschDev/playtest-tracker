@@ -108,7 +108,9 @@ form {
     .login-container {
         min-height: 70vh;
     }
+
     .register-container {
         width: 85%;
+        margin-bottom: 3rem;
     }
 }

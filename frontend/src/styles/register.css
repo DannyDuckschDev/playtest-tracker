@@ -50,7 +50,7 @@
     font-size: 0.9em;
     color: #515050; /* Default color for invalid rules */
     margin-bottom: var(--spacing-small);
-    margin-left: 3rem;
+
 }
 
 .password-criteria-list li.valid {
