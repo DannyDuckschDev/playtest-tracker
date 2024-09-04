@@ -7,7 +7,7 @@ const Dashboard: React.FC = () => {
     const navitage = useNavigate();
 
     const handleLogout = () =>{
-        localStorage.removeItem('authToken'); //Removes token from local storage
+        localStorage.removeItem('token'); //Removes token from local storage
         navitage('/authPage'); //navigates user to login page
     };
 
