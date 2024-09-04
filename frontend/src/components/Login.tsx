@@ -17,7 +17,7 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [submitted, setSubmitted] = useState(false);
-    const [ loading, setLoading] = useState<boolean>(false); //Loading state
+    const [loading, setLoading] = useState<boolean>(false); //Loading state
 
     // Custom hook to handle login functionality and potential errors
     const { login, error } = useLogin();
@@ -26,7 +26,7 @@ const Login: React.FC = () => {
     const { errors, validateForm, handleFieldChange } = useFormvalidation({
         email: { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }, // Email validation pattern
         password: { required: true, minLength: 8 }, // Minimum length for password
-    }, {validatePasswordComplexity: false}); // Password complexity validation disabled for login
+    }, { validatePasswordComplexity: false }); // Password complexity validation disabled for login
 
     // Custom hook to toggle password visibility between text and password types
     const [passwordType, togglePasswordVisibility] = usePasswordToggle();
@@ -35,30 +35,20 @@ const Login: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault(); // Prevent default form submission behavior
         setSubmitted(true); // Mark form as submitted
-        setLoading(true); //Set loading to true when request starts
+        setLoading(true); // Set loading to true when request starts
 
         const isValid = validateForm({ email, password }); // Validate form fields
 
         if (isValid) {
             try {
-                const response = await login(email, password); // Attempt to login
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status ${response.status}`); // Handle HTTP errors
-                }
-
-                console.log('Login successful');
-                // Redirect or perform other actions after successful login
+                await login(email, password); // Use login from useLogin
             } catch (error) {
-                if (error instanceof Error) {
-                    console.error("Login error:", error.message); // Log error message
-                } else {
-                    console.error("An unexpected error occurred:", error); // Log unexpected error
-                }
+                console.error("Login failed", error);
             } finally {
-                setLoading(false); //Stop loading spinner regardless of success or failure
+                setLoading(false); // Stop loading spinner regardless of success or failure
             }
         } else {
-            setLoading(false); //Stop loading spinner if validation fails
+            setLoading(false); // Stop loading spinner if validation fails
         }
     };
 
@@ -82,7 +72,7 @@ const Login: React.FC = () => {
                         value={email}
                         onChange={(e) => handleChange('email', e.target.value, setEmail)}
                         required
-                        disabled={loading} //Disable input while loading
+                        disabled={loading} // Disable input while loading
                     />
                     {errors.email && <p className="error">{errors.email}</p>} {/* Display email validation error */}
                 </div>
@@ -96,7 +86,7 @@ const Login: React.FC = () => {
                             value={password}
                             onChange={(e) => handleChange('password', e.target.value, setPassword)}
                             required
-                            disabled={loading} //Disable input while loading
+                            disabled={loading} // Disable input while loading
                         />
                         <span className="password-toggle-icon" onClick={togglePasswordVisibility}>
                             <FontAwesomeIcon icon={passwordType === "password" ? faEyeSlash : faEye} />
@@ -105,7 +95,7 @@ const Login: React.FC = () => {
                     {errors.password && <p className="error">{errors.password}</p>} {/* Display password validation error */}
                 </div>
                 <button type="submit" className="btn btn-primary">
-                    {loading? <Spinner animation="border" size="sm" /> : "Login"}
+                    {loading ? <Spinner animation="border" size="sm" /> : "Login"}
                 </button>
             </form>
         </div>
