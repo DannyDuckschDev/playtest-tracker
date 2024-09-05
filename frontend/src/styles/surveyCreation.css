@@ -69,30 +69,33 @@
     margin-bottom: var(--spacing-small);
 }
 
-.survey-checkbox input {
-    appearance: none;
+/* Apply styles directly to checkbox inputs */
+input[type="checkbox"] {
+    appearance: none; /* Remove default checkbox */
     width: 20px;
     height: 20px;
+    background-color: white;
     border: 1.5px solid var(--primary-color);
     border-radius: 4px;
-    background-color: var(--text-color);
-    margin-right: var(--spacing-small);
     cursor: pointer;
+    position: relative; /* Important for the checkmark positioning */
+    margin-right: var(--spacing-small);
 }
 
-.survey-checkbox input:checked {
-    background-color: var(--primary-color);
-    border: 1.5px solid var(--primary-color);
+input[type="checkbox"]:checked {
+    background-color: var(--primary-color); /* Checked background */
+    color: white;
 }
 
-.survey-checkbox input:checked::after {
-    content: '✓';
+input[type="checkbox"]:checked::after {
+    content: '✓'; /* Checkmark symbol */
     font-size: 14px;
     color: white;
     position: absolute;
     top: -1px;
     left: 4px;
 }
+
 
 .survey-checkbox label {
     color: var(--text-color);

@@ -1,33 +1,36 @@
+//frontend/src/components/blocks/PlayStyleBlock.tsx
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface Props {
-  playStyle: string[];
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error?: string | string[]; //Allow string array or string
+  playStyle: string[]; // Array of selected play styles
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // Event handler for checkbox changes
+  error?: string | string[]; // Optional error message, either a single string or an array of strings
 }
 
 const PlayStyleBlock: React.FC<Props> = ({ playStyle, handleChange, error }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(); // Hook for translation/localization
 
   return (
     <div className="block form-group">
+      {/* Category label */}
       <label className="survey-block-category">{t('survey.questions.playStyle')}</label>
       
-      <div>
+      {/* Checkbox for 'Short Games' */}
+      <div className="survey-checkbox">
         <input
           type="checkbox"
           name="playStyle"
           id="shortGames"
           value="shortGames"
-          onChange={handleChange}
-          checked={playStyle.includes('shortGames')}
-          className="survey-checkbox"
+          onChange={handleChange} // Trigger handleChange when the checkbox value changes
+          checked={playStyle.includes('shortGames')} // Check if 'shortGames' is in the playStyle array
         />
-        <label htmlFor="shortGames">{t('survey.options.playStyle.shortGames')}</label>
+        <label htmlFor="shortGames">{t('survey.options.playStyle.shortGames')}</label> {/* Label for 'Short Games' */}
       </div>
 
-      <div>
+      {/* Checkbox for 'Long Games' */}
+      <div className="survey-checkbox">
         <input
           type="checkbox"
           name="playStyle"
@@ -35,12 +38,12 @@ const PlayStyleBlock: React.FC<Props> = ({ playStyle, handleChange, error }) => 
           value="longGames"
           onChange={handleChange}
           checked={playStyle.includes('longGames')}
-          className="survey-checkbox"
         />
-        <label htmlFor="longGames">{t('survey.options.playStyle.longGames')}</label>
+        <label htmlFor="longGames">{t('survey.options.playStyle.longGames')}</label> {/* Label for 'Long Games' */}
       </div>
 
-      <div>
+      {/* Checkbox for 'Simple Games' */}
+      <div className="survey-checkbox">
         <input
           type="checkbox"
           name="playStyle"
@@ -48,12 +51,12 @@ const PlayStyleBlock: React.FC<Props> = ({ playStyle, handleChange, error }) => 
           value="simpleGames"
           onChange={handleChange}
           checked={playStyle.includes('simpleGames')}
-          className="survey-checkbox"
         />
-        <label htmlFor="simpleGames">{t('survey.options.playStyle.simpleGames')}</label>
+        <label htmlFor="simpleGames">{t('survey.options.playStyle.simpleGames')}</label> {/* Label for 'Simple Games' */}
       </div>
 
-      <div>
+      {/* Checkbox for 'Complex Games' */}
+      <div className="survey-checkbox">
         <input
           type="checkbox"
           name="playStyle"
@@ -61,12 +64,12 @@ const PlayStyleBlock: React.FC<Props> = ({ playStyle, handleChange, error }) => 
           value="complexGames"
           onChange={handleChange}
           checked={playStyle.includes('complexGames')}
-          className="survey-checkbox"
         />
-        <label htmlFor="complexGames">{t('survey.options.playStyle.complexGames')}</label>
+        <label htmlFor="complexGames">{t('survey.options.playStyle.complexGames')}</label> {/* Label for 'Complex Games' */}
       </div>
 
-      <div>
+      {/* Checkbox for 'Family Games' */}
+      <div className="survey-checkbox">
         <input
           type="checkbox"
           name="playStyle"
@@ -74,12 +77,12 @@ const PlayStyleBlock: React.FC<Props> = ({ playStyle, handleChange, error }) => 
           value="familyGames"
           onChange={handleChange}
           checked={playStyle.includes('familyGames')}
-          className="survey-checkbox"
         />
-        <label htmlFor="familyGames">{t('survey.options.playStyle.familyGames')}</label>
+        <label htmlFor="familyGames">{t('survey.options.playStyle.familyGames')}</label> {/* Label for 'Family Games' */}
       </div>
 
-      <div>
+      {/* Checkbox for 'Connoisseur Game' */}
+      <div className="survey-checkbox">
         <input
           type="checkbox"
           name="playStyle"
@@ -87,12 +90,12 @@ const PlayStyleBlock: React.FC<Props> = ({ playStyle, handleChange, error }) => 
           value="ConnoisseurGame"
           onChange={handleChange}
           checked={playStyle.includes('ConnoisseurGame')}
-          className="survey-checkbox"
         />
-        <label htmlFor="ConnoisseurGame">{t('survey.options.playStyle.ConnoisseurGame')}</label>
+        <label htmlFor="ConnoisseurGame">{t('survey.options.playStyle.ConnoisseurGame')}</label> {/* Label for 'Connoisseur Game' */}
       </div>
 
-      <div>
+      {/* Checkbox for 'Expert Games' */}
+      <div className="survey-checkbox">
         <input
           type="checkbox"
           name="playStyle"
@@ -100,11 +103,11 @@ const PlayStyleBlock: React.FC<Props> = ({ playStyle, handleChange, error }) => 
           value="expertGames"
           onChange={handleChange}
           checked={playStyle.includes('expertGames')}
-          className="survey-checkbox"
         />
-        <label htmlFor="expertGames">{t('survey.options.playStyle.expertGames')}</label>
+        <label htmlFor="expertGames">{t('survey.options.playStyle.expertGames')}</label> {/* Label for 'Expert Games' */}
       </div>
 
+      {/* Display error message if present */}
       {error && <p className="error-text">{error}</p>}
     </div>
   );
