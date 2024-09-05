@@ -1,0 +1,44 @@
+{
+  "survey": {
+    "title": "Umfrage erstellen",
+    "submit": "Fragebogen speichern",
+    "categories": {
+      "demographics": "Kategorie: demografische Daten",
+      "gameplay": "Kategorie: Spielerfahrung",
+      "feedback": "Kategorie: Freies Feedback"
+    },
+    "questions": {
+      "frequency": "Wie regelmäßig spielst du Brett- / Kartenspiele?",
+      "firstTime": "Spielst du {{Spielname}} das erste Mal?",
+      "playStyle": "Was spielst du gerne?",
+      "overallRating": "Gesamteindruck",
+      "strategic": "Wie strategisch fandest du das Spiel?",
+      "luckFactor": "Wie glückslastig fandest du das Spiel?",
+      "funFactor": "Welchen FunFaktor hatte das Spiel für dich?"
+    },
+    "options": {
+      "frequency": {
+        "select": "Bitte auswählen", 
+        "often": "mehrmals pro Woche",
+        "weekly": "einmal pro Woche",
+        "monthly": "einmal im Monat",
+        "multipleMonthly": "mehrmals im Monat",
+        "everyFewMonths": "alle paar Monate"
+      },
+      "playStyle": {
+        "shortGames": "kürzere Spiele",
+        "longGames": "längere Spiele",
+        "simpleGames": "einfache Spiele",
+        "complexGames": "komplexere Spiele",
+        "familyGames": "Familienspiele",
+        "ConnoisseurGame": "Kennerspiele",
+        "expertGames": "Expertenspiele"
+      }
+    },
+    "validation": {
+      "frequencyRequired": "Bitte wähle eine Option für die Spielhäufigkeit",
+      "playStyleRequired": "Bitte wähle mindestens einen Spielstil",
+      "ratingRequired": "Bitte bewerte das Spiel"
+    }
+  }
+}

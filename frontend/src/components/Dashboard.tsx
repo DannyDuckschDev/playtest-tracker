@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import SurveyCreation from "./SurveyCreation";
 
 const Dashboard: React.FC = () => {
     const navitage = useNavigate();
@@ -13,10 +14,14 @@ const Dashboard: React.FC = () => {
 
     return	(
         <div>
-            <h1>Willkommen auf deinem Dashboard, Spielautor*in!</h1>
             <button onClick={handleLogout} className="btn btn-danger">Logout</button>
+            <hr />
+            <h1>Willkommen auf deinem Dashboard, Spielautor*in!</h1>
+            <hr />
+            <SurveyCreation />
+            
         </div>
     );
-};
+}; 
 
 export default Dashboard;

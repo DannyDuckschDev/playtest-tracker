@@ -16,10 +16,16 @@
     "@types/react-bootstrap": "^0.32.37",
     "@types/react-router-dom": "^5.3.3",
     "bootstrap": "^5.3.3",
+    "formik": "^2.4.6",
+    "i18next": "^23.14.0",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.6.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-i18next": "^15.0.1",
+    "react-router-dom": "^6.26.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

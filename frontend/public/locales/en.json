@@ -1,0 +1,43 @@
+{
+  "survey": {
+    "title": "Create Survey",
+    "submit": "Save Survey",
+    "categories": {
+      "demographics": "Category: Demographics",
+      "gameplay": "Category: Gameplay Experience",
+      "feedback": "Category: Open Feedback"
+    },
+    "questions": {
+      "frequency": "How often do you play board/card games?",
+      "firstTime": "Are you playing {{Spielname}} for the first time?",
+      "playStyle": "What do you like to play?",
+      "overallRating": "Overall Impression",
+      "strategic": "How strategic was the game?",
+      "luckFactor": "How luck-dependent was the game?",
+      "funFactor": "How fun was the game for you?"
+    },
+    "options": {
+      "frequency": {
+        "often": "multiple times a week",
+        "weekly": "once a week",
+        "monthly": "once a month",
+        "multipleMonthly": "multiple times a month",
+        "everyFewMonths": "every few months"
+      },
+      "playStyle": {
+        "shortGames": "shorter games",
+        "longGames": "longer games",
+        "simpleGames": "simpler games",
+        "complexGames": "more complex games",
+        "familyGames": "family games",
+        "ConnoisseurGame": "Connoisseur game",
+        "expertGames": "expert games"
+      }
+    },
+    "validation": {
+      "frequencyRequired": "Please select an option for frequency",
+      "playStyleRequired": "Please select at least one play style",
+      "ratingRequired": "Please rate the game"
+    }
+  }
+}
