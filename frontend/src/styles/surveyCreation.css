@@ -101,6 +101,14 @@ input[type="checkbox"]:checked::after {
     color: var(--text-color);
 }
 
+/* Style for the task/instruction text */
+.task-instruction {
+    font-style: italic;
+    margin-bottom: var(--spacing-medium);
+    color: var(--warning-color); /* Use the same text color for consistency */
+  }
+  
+
 /* Submit Button Styling */
 .btn-primary {
     background-color: var(--primary-color);

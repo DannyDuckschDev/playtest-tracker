@@ -1,6 +1,7 @@
 //frontend/src/components/blocks/PlayStyleBlock.tsx
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import BlockHeader from '../common/BlockHeader';
 
 interface Props {
   playStyle: string[]; // Array of selected play styles
@@ -13,8 +14,12 @@ const PlayStyleBlock: React.FC<Props> = ({ playStyle, handleChange, error }) => 
 
   return (
     <div className="block form-group">
-      {/* Category label */}
-      <label className="survey-block-category">{t('survey.questions.playStyle')}</label>
+      
+      <BlockHeader
+        category="survey.categories.gameplay" //Pass Category
+        question="survey.questions.playStyle" //Pass question
+        task="survey.tasks.selectPlayStyle" //Pass task
+      />
       
       {/* Checkbox for 'Short Games' */}
       <div className="survey-checkbox">

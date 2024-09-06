@@ -1,6 +1,7 @@
-//frontend/src/component/blocks/PlayFrequencyBlock.tsx
+// frontend/src/components/blocks/PlayFrequencyBlock.tsx
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import BlockHeader from '../common/BlockHeader';
 
 interface Props {
   frequency: string; // The selected frequency value
@@ -13,29 +14,26 @@ const PlayFrequencyBlock: React.FC<Props> = ({ frequency, handleChange, error })
 
   return (
     <div className="block form-group">
-      {/* Category label */}
-      <label className="category">{t('survey.categories.gameplay')}</label>
-      
-      {/* Question text */}
-      <p className="question">{t('survey.questions.frequency')}</p>
-      
-      {/* Horizontal separator line */}
-      <hr />
+      {/* BlockHeader with category, question, and task */}
+      <BlockHeader
+        category="survey.categories.gameplay"
+        question="survey.questions.frequency"
+        task="survey.tasks.selectFrequency" // Task instruction for the frequency question
+      />
 
       {/* Dropdown select for play frequency */}
       <select
-        name="frequency" // Name attribute for form field
-        value={frequency} // Controlled input value based on frequency prop
-        onChange={handleChange} // Change event handler to update selected value
-        className="form-control" // Styling class for the dropdown
+        name="frequency"
+        value={frequency}
+        onChange={handleChange}
+        className="form-control"
       >
-        {/* Dropdown options */}
-        <option value="">{t('survey.options.frequency.select')}</option> {/* Default option prompting selection */}
-        <option value="often">{t('survey.options.frequency.often')}</option> {/* Option for 'often' */}
-        <option value="weekly">{t('survey.options.frequency.weekly')}</option> {/* Option for 'weekly' */}
-        <option value="monthly">{t('survey.options.frequency.monthly')}</option> {/* Option for 'monthly' */}
-        <option value="multipleMonthly">{t('survey.options.frequency.multipleMonthly')}</option> {/* Option for 'multiple times a month' */}
-        <option value="everyFewMonths">{t('survey.options.frequency.everyFewMonths')}</option> {/* Option for 'every few months' */}
+        <option value="">{t('survey.options.frequency.select')}</option>
+        <option value="often">{t('survey.options.frequency.often')}</option>
+        <option value="weekly">{t('survey.options.frequency.weekly')}</option>
+        <option value="monthly">{t('survey.options.frequency.monthly')}</option>
+        <option value="multipleMonthly">{t('survey.options.frequency.multipleMonthly')}</option>
+        <option value="everyFewMonths">{t('survey.options.frequency.everyFewMonths')}</option>
       </select>
 
       {/* Conditionally render error message if present */}

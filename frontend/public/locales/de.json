@@ -18,7 +18,7 @@
     },
     "options": {
       "frequency": {
-        "select": "Bitte auswählen", 
+        "select": "Bitte auswählen",
         "often": "mehrmals pro Woche",
         "weekly": "einmal pro Woche",
         "monthly": "einmal im Monat",
@@ -34,6 +34,10 @@
         "ConnoisseurGame": "Kennerspiele",
         "expertGames": "Expertenspiele"
       }
+    },
+    "tasks": {
+      "selectFrequency": "Bitte wähle eine Option für die Spielhäufigkeit",
+      "selectPlayStyle": "Bitte wähle mindestens einen Spielstil"
     },
     "validation": {
       "frequencyRequired": "Bitte wähle eine Option für die Spielhäufigkeit",

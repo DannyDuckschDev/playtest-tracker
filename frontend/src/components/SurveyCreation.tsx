@@ -41,19 +41,7 @@ const SurveyCreation: React.FC = () => {
                 
                 {/* Play Frequency Block */}
                 <div className="survey-block">
-                    {/* Category Title */}
-                    <div className="survey-block-category">
-                        {t('survey.categories.gameplay')} {/* Gameplay category */}
-                    </div>
-
-                    {/* Frequency Question */}
-                    <div className="survey-block-question">
-                        {t('survey.questions.frequency')} {/* Frequency question */}
-                    </div>
-
-                    {/* Separator Line */}
-                    <div className="survey-block-separator" />
-
+                   
                     {/* PlayFrequencyBlock Component for Frequency Selection */}
                     <PlayFrequencyBlock
                         frequency={formik.values.frequency} // Pass formik frequency value
@@ -64,19 +52,7 @@ const SurveyCreation: React.FC = () => {
 
                 {/* Play Style Block */}
                 <div className="survey-block">
-                    {/* Category Title */}
-                    <div className="survey-block-category">
-                        {t('survey.categories.gameplay')} {/* Gameplay category */}
-                    </div>
-
-                    {/* Play Style Question */}
-                    <div className="survey-block-question">
-                        {t('survey.questions.playStyle')} {/* Play style question */}
-                    </div>
-
-                    {/* Separator Line */}
-                    <div className="survey-block-separator" />
-
+                    
                     {/* PlayStyleBlock Component for Play Style Selection */}
                     <PlayStyleBlock
                         playStyle={formik.values.playStyle} // Pass formik playStyle value
