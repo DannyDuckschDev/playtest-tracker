@@ -8,6 +8,7 @@
       "feedback": "Kategorie: Freies Feedback"
     },
     "questions": {
+      "demographics": "Bitte gib deine demografischen Daten ein",
       "frequency": "Wie regelmäßig spielst du Brett- / Kartenspiele?",
       "firstTime": "Spielst du {{Spielname}} das erste Mal?",
       "playStyle": "Was spielst du gerne?",
@@ -33,16 +34,32 @@
         "familyGames": "Familienspiele",
         "ConnoisseurGame": "Kennerspiele",
         "expertGames": "Expertenspiele"
+      },
+      "gender": {
+        "select": "Bitte auswählen",
+        "female": "weiblich",
+        "divers": "divers",
+        "male": "männlich"
       }
     },
     "tasks": {
       "selectFrequency": "Bitte wähle eine Option für die Spielhäufigkeit",
-      "selectPlayStyle": "Bitte wähle mindestens einen Spielstil"
+      "selectPlayStyle": "Bitte wähle mindestens einen Spielstil",
+      "enterDemographics": "Fülle die Felder aus."
     },
+    "labels": {
+      "name": "Vorname",
+      "age": "Alter",
+      "gender": "Geschlecht"
+    },
+    
     "validation": {
       "frequencyRequired": "Bitte wähle eine Option für die Spielhäufigkeit",
       "playStyleRequired": "Bitte wähle mindestens einen Spielstil",
-      "ratingRequired": "Bitte bewerte das Spiel"
+      "ratingRequired": "Bitte bewerte das Spiel",
+      "nameRequired": "Name ist erforderlich",
+      "ageRequired": "Alter muss eine Zahl sein",
+      "genderRequired": "Geschlecht ist erforderlich"
     }
   }
 }

@@ -1,3 +1,4 @@
+// frontend/src/components/SurveyCreation.tsx
 import React from 'react';
 import { useTranslation } from 'react-i18next'; // Hook for translations/localization
 import { useFormik } from 'formik'; // Form handling using Formik
@@ -5,6 +6,7 @@ import * as Yup from 'yup'; // For form validation schema
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap for basic styling
 import PlayFrequencyBlock from './blocks/PlayFrequencyBlock'; // Custom component for play frequency
 import PlayStyleBlock from './blocks/PlayStyleBlock'; // Custom component for play style selection
+import DemographicsBlock from './blocks/DemographicBlock'; // Custom component for demographic data
 import '../styles/surveyCreation.css'; // Custom styles for the survey
 
 const SurveyCreation: React.FC = () => {
@@ -16,6 +18,10 @@ const SurveyCreation: React.FC = () => {
             .required(t('survey.validation.frequencyRequired')), // Frequency is required
         playStyle: Yup.array()
             .min(1, t('survey.validation.playStyleRequired')), // At least one play style is required
+        name: Yup.string()
+            .required(t('survey.validation.nameRequired')), // Name is required
+        gender: Yup.string()
+            .required(t('survey.validation.genderRequired')) // Gender is required
     });
 
     // Use Formik to manage form state, validation, and submission
@@ -23,6 +29,9 @@ const SurveyCreation: React.FC = () => {
         initialValues: {
             frequency: '', // Initial value for play frequency
             playStyle: [], // Initial value for selected play styles
+            name: '', // Initial value for name
+            age: '', // Initial value for age
+            gender: '', // Initial value for gender
         },
         validationSchema, // Validation rules defined with Yup
         onSubmit: (values) => {
@@ -38,32 +47,43 @@ const SurveyCreation: React.FC = () => {
 
             {/* Form Wrapper */}
             <form onSubmit={formik.handleSubmit} className="survey-form">
-                
+
+                {/* Demographics Block */}
+                <div className="survey-block">
+                    <DemographicsBlock
+                        name={formik.values.name} 
+                        age={formik.values.age}
+                        gender={formik.values.gender}
+                        handleChange={formik.handleChange}
+                        error={{
+                            name: formik.errors.name,
+                            age: formik.errors.age,
+                            gender: formik.errors.gender
+                        }}
+                    />
+                </div>
+
                 {/* Play Frequency Block */}
                 <div className="survey-block">
-                   
-                    {/* PlayFrequencyBlock Component for Frequency Selection */}
                     <PlayFrequencyBlock
-                        frequency={formik.values.frequency} // Pass formik frequency value
-                        handleChange={formik.handleChange} // Handle formik value change
-                        error={formik.errors.frequency} // Pass validation error if any
+                        frequency={formik.values.frequency}
+                        handleChange={formik.handleChange}
+                        error={formik.errors.frequency}
                     />
                 </div>
 
                 {/* Play Style Block */}
                 <div className="survey-block">
-                    
-                    {/* PlayStyleBlock Component for Play Style Selection */}
                     <PlayStyleBlock
-                        playStyle={formik.values.playStyle} // Pass formik playStyle value
-                        handleChange={formik.handleChange} // Handle formik value change
-                        error={formik.errors.playStyle} // Pass validation error if any
+                        playStyle={formik.values.playStyle}
+                        handleChange={formik.handleChange}
+                        error={formik.errors.playStyle}
                     />
                 </div>
 
                 {/* Submit Button */}
                 <button type="submit" className="btn-primary">
-                    {t('survey.submit')} {/* Submit button text */}
+                    {t('survey.submit')}
                 </button>
             </form>
         </div>
