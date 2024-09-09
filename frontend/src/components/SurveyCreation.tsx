@@ -8,6 +8,8 @@ import PlayFrequencyBlock from './blocks/PlayFrequencyBlock'; // Custom componen
 import PlayStyleBlock from './blocks/PlayStyleBlock'; // Custom component for play style selection
 import DemographicsBlock from './blocks/DemographicBlock'; // Custom component for demographic data
 import '../styles/surveyCreation.css'; // Custom styles for the survey
+import OverallImpressionBlock from './blocks/OverallImpressionBlock';
+import FirstTimeBlock from './blocks/FirstTimeBlock';
 
 const SurveyCreation: React.FC = () => {
     const { t } = useTranslation(); // Translation hook for localization
@@ -21,7 +23,10 @@ const SurveyCreation: React.FC = () => {
         name: Yup.string()
             .required(t('survey.validation.nameRequired')), // Name is required
         gender: Yup.string()
-            .required(t('survey.validation.genderRequired')) // Gender is required
+            .required(t('survey.validation.genderRequired')), // Gender is required
+        firstTime: Yup.string()
+        .required(t('survey.validation.firstTimeRequired')), // First time selection is required
+        rating: Yup.number().min(1, t('survey.validation.overallImpressionRequired'))
     });
 
     // Use Formik to manage form state, validation, and submission
@@ -32,6 +37,8 @@ const SurveyCreation: React.FC = () => {
             name: '', // Initial value for name
             age: '', // Initial value for age
             gender: '', // Initial value for gender
+            rating: 0, // Initial rating value for OverallImpressionBlock
+            firstTime: '', // Initially no value selected
         },
         validationSchema, // Validation rules defined with Yup
         onSubmit: (values) => {
@@ -79,6 +86,24 @@ const SurveyCreation: React.FC = () => {
                         handleChange={formik.handleChange}
                         error={formik.errors.playStyle}
                     />
+                </div>
+
+                {/*First Time Playing*/}
+                <div className="survey-block">
+                    <FirstTimeBlock
+                        firstTime={formik.values.firstTime}
+                        handleChange={formik.handleChange}
+                        error={formik.errors.firstTime}
+                    />
+                </div>
+
+                {/*Overall Impression */}
+                <div className="survey-block">
+                        <OverallImpressionBlock
+                            rating={formik.values.rating}
+                            handleChange={formik.handleChange}
+                            error={formik.errors.rating}
+                        /> 
                 </div>
 
                 {/* Submit Button */}

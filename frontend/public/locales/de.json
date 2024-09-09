@@ -10,7 +10,7 @@
     "questions": {
       "demographics": "Bitte gib deine demografischen Daten ein",
       "frequency": "Wie regelmäßig spielst du Brett- / Kartenspiele?",
-      "firstTime": "Spielst du {{Spielname}} das erste Mal?",
+      "firstTime": "Spielst du das Spiel zum Ersten Mal?",
       "playStyle": "Was spielst du gerne?",
       "overallRating": "Gesamteindruck",
       "strategic": "Wie strategisch fandest du das Spiel?",
@@ -40,12 +40,18 @@
         "female": "weiblich",
         "divers": "divers",
         "male": "männlich"
+      },
+      "firstTime": {
+        "yes": "Ja",
+        "no": "nein"
       }
     },
     "tasks": {
       "selectFrequency": "Bitte wähle eine Option für die Spielhäufigkeit",
       "selectPlayStyle": "Bitte wähle mindestens einen Spielstil",
-      "enterDemographics": "Fülle die Felder aus."
+      "enterDemographics": "Fülle die Felder aus.",
+      "selectFirstTime" : "Bitte wähle eine Option",
+      "rateOverallImpression": "Bitte bewerte den Gesamteindruck des Spiels"
     },
     "labels": {
       "name": "Vorname",
@@ -59,7 +65,9 @@
       "ratingRequired": "Bitte bewerte das Spiel",
       "nameRequired": "Name ist erforderlich",
       "ageRequired": "Alter muss eine Zahl sein",
-      "genderRequired": "Geschlecht ist erforderlich"
+      "genderRequired": "Geschlecht ist erforderlich",
+      "firstTimeRequired" : "Bitt wäle, ob du das Spiel zum ersten mal spielst",
+       "overallImpressionRequired": "Bitte bewerte den Gesamteindruck des Spiels"
     }
   }
 }

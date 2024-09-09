@@ -1,6 +1,6 @@
 @import './variables.css';
 
-/* Container Styling */
+/* ------ container styling ------ */
 .survey-creation-container {
     display: flex;
     justify-content: center;
@@ -11,7 +11,7 @@
     height: auto;
 }
 
-/* Form Styling */
+/* ------ form styling ------*/
 .survey-form {
     background-color: var(--background-color-contrast-light);
     padding: var(--spacing-large);
@@ -22,7 +22,7 @@
     margin: var(--spacing-large);
 }
 
-/* Block Styling */
+/* ------ block styling ------*/
 .survey-block {
     background-color: var(--background-color-highlight);
     padding: var(--spacing-medium);
@@ -38,7 +38,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Kategorie- und Fragen Styling */
+/* ------ category and question styling ------ */
 .survey-block-category {
     font-weight: bold;
     font-size: 1.2rem;
@@ -62,14 +62,14 @@
     font-style: italic;
 }
 
-/* Checkbox Styling */
+/* ------ Checkbox Styling ------*/
 .survey-checkbox {
     display: flex;
     align-items: center;
     margin-bottom: var(--spacing-small);
 }
 
-/* Apply styles directly to checkbox inputs */
+/*  Apply styles directly to checkbox inputs  */
 input[type="checkbox"] {
     appearance: none; /* Remove default checkbox */
     width: 20px;
@@ -96,12 +96,87 @@ input[type="checkbox"]:checked::after {
     left: 4px;
 }
 
-
 .survey-checkbox label {
     color: var(--text-color);
 }
 
-/* Style for the task/instruction text */
+/* ------ CSS for radio button block ------ */
+.survey-radio {
+    margin-bottom: var(--spacing-small); /* Space between radio buttons */
+    display: flex;
+    align-items: center;
+  }
+  
+  .survey-radio input[type="radio"] {
+    appearance: none; /* Remove default radio button */
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1.5px solid var(--primary-color); /* Orange border */
+    border-radius: 50%; /* Make it circular like a radio button */
+    cursor: pointer;
+    position: relative;
+    margin-right: var(--spacing-small);
+  }
+  
+  .survey-radio input[type="radio"]:checked {
+    background-color: var(--primary-color); /* Primary color for checked state */
+    border: 1.5px solid var(--primary-color); /* Keep the border orange */
+  }
+  
+  .survey-radio input[type="radio"]:checked::after {
+    content: ''; /* Create a dot for the checked radio button */
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-color-hover);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .survey-radio label {
+    color: var(--text-color); /* Label color */
+  }
+  
+/* ------ Styling for the star rating ------ */
+.star-rating {
+    display: flex;
+    justify-content: space-around;
+    margin: var(--spacing-small) 0;
+  }
+  
+  .star {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
+  }
+  
+  .star input {
+    display: none; /* Hide the radio button bullets */
+  }
+  
+  .filled-star {
+    color: var(--primary-color); /* Primary color for filled stars */
+  }
+  
+  .empty-star {
+    color: var(--text-color-light); /* Default color for empty stars */
+  }
+  
+  .star:hover .empty-star,
+  .star:hover ~ .star .empty-star {
+    color: var(--primary-color-light); /* Change color when hovering over empty stars */
+  }
+  
+  .star:hover {
+    transform: scale(1.2); /* Slightly enlarge the star on hover */
+    color: var(--primary-color); /* Highlight hovered star */
+  }
+
+
+/* ------ Style for the task/instruction text ------ */
 .task-instruction {
     font-style: italic;
     margin-bottom: var(--spacing-medium);
@@ -109,7 +184,7 @@ input[type="checkbox"]:checked::after {
   }
   
 
-/* Submit Button Styling */
+/* ------ submit button styling ------*/
 .btn-primary {
     background-color: var(--primary-color);
     color: var(--text-color);
@@ -125,7 +200,7 @@ input[type="checkbox"]:checked::after {
     background-color: var(--primary-color-hover);
 }
 
-/* Error Text Styling */
+/* ------ Error Text Styling ------*/
 .error-text {
     color: var(--warning-color);
     font-size: 0.875rem;
