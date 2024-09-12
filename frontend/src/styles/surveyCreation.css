@@ -175,6 +175,62 @@ input[type="checkbox"]:checked::after {
     color: var(--primary-color); /* Highlight hovered star */
   }
 
+/* ----- GameRatingBlock Styling ----- */
+
+/* Container for each rating question */
+.survey-rating {
+  margin-bottom: var(--spacing-medium);
+}
+
+/*  Container for the rating inputs */
+.rating-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style the rating options */
+.rating-option {
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: var(--spacing-small);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Hide radio buttons */
+.rating-option input {
+  display: none;
+}
+
+/* Change color when hovered */
+.rating-option:hover span {
+  border-color: var(--primary-color);
+  box-shadow: var(--box-shadow-primary);
+  color: white;
+}
+
+/* Style for the radio button span (default and unchecked) */
+.rating-option span {
+  padding: 5px 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%; /* Circular shape for radio */
+  background-color: var(--background-color-light);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.rating-option input:checked span {
+  background-color: var(--primary-color); /* Fill with primary color when checked */
+  color: white;
+  border-color: var(--primary-color-hover); /* Change border when checked */
+}
+
+/* Style for the radio button label */
+.rating-option label {
+  margin-left: var(--spacing-small);
+  color: var(--text-color); /* Label text color */
+}
+
+
 
 /* ------ Style for the task/instruction text ------ */
 .task-instruction {

@@ -10,6 +10,7 @@ import DemographicsBlock from './blocks/DemographicBlock'; // Custom component f
 import '../styles/surveyCreation.css'; // Custom styles for the survey
 import OverallImpressionBlock from './blocks/OverallImpressionBlock';
 import FirstTimeBlock from './blocks/FirstTimeBlock';
+import GameRatingBlock from './blocks/GameRatingBlock';
 
 const SurveyCreation: React.FC = () => {
     const { t } = useTranslation(); // Translation hook for localization
@@ -26,7 +27,15 @@ const SurveyCreation: React.FC = () => {
             .required(t('survey.validation.genderRequired')), // Gender is required
         firstTime: Yup.string()
         .required(t('survey.validation.firstTimeRequired')), // First time selection is required
-        rating: Yup.number().min(1, t('survey.validation.overallImpressionRequired'))
+        overallRating: Yup.number()
+            .min(1, t('survey.validation.overallImpressionRequired')), // Must be at least 1 for overall impression
+        strategic: Yup.number().required(t('survey.validation.ratingRequired')), // Rating for strategic aspect is required
+        luckFactor: Yup.number().required(t('survey.validation.ratingRequired')), // Rating for luck factor is required
+        funFactor: Yup.number().required(t('survey.validation.ratingRequired')), // Rating for fun factor is required
+        replayValue: Yup.number().required(t('survey.validation.ratingRequired')), // Rating for replayability is required
+        excitement: Yup.number().required(t('survey.validation.ratingRequired')), // Rating for excitement is required
+        uniqueness: Yup.number().required(t('survey.validation.ratingRequired')), // Rating for uniqueness is required
+        clarity: Yup.number().required(t('survey.validation.ratingRequired')), // Rating for clarity is required
     });
 
     // Use Formik to manage form state, validation, and submission
@@ -37,8 +46,15 @@ const SurveyCreation: React.FC = () => {
             name: '', // Initial value for name
             age: '', // Initial value for age
             gender: '', // Initial value for gender
-            rating: 0, // Initial rating value for OverallImpressionBlock
             firstTime: '', // Initially no value selected
+            overallRating: 0, // Initial rating value for OverallImpressionBlock
+            strategic: 0, // Initial value for strategic rating
+            luckFactor: 0, // Initial value for luck factor
+            funFactor: 0, // Initial value for fun factor
+            replayValue: 0, // Initial value for replay value
+            excitement: 0, // Initial value for excitement
+            uniqueness: 0, // Initial value for uniqueness
+            clarity: 0, // Initial value for clarity
         },
         validationSchema, // Validation rules defined with Yup
         onSubmit: (values) => {
@@ -88,7 +104,7 @@ const SurveyCreation: React.FC = () => {
                     />
                 </div>
 
-                {/*First Time Playing*/}
+                {/* First Time Playing Block */}
                 <div className="survey-block">
                     <FirstTimeBlock
                         firstTime={formik.values.firstTime}
@@ -97,13 +113,38 @@ const SurveyCreation: React.FC = () => {
                     />
                 </div>
 
-                {/*Overall Impression */}
+                {/* Overall Impression Block */}
                 <div className="survey-block">
-                        <OverallImpressionBlock
-                            rating={formik.values.rating}
-                            handleChange={formik.handleChange}
-                            error={formik.errors.rating}
-                        /> 
+                    <OverallImpressionBlock
+                        rating={formik.values.overallRating} // Pass overall rating value
+                        handleChange={formik.handleChange} // Handle rating change
+                        error={formik.errors.overallRating} // Handle validation errors
+                    /> 
+                </div>
+
+                {/* Game Rating Block */}
+                <div className='survey-block'>
+                    <GameRatingBlock
+                        values={{
+                          strategic: formik.values.strategic,
+                          luckFactor: formik.values.luckFactor,
+                          funFactor: formik.values.funFactor,
+                          replayValue: formik.values.replayValue,
+                          excitement: formik.values.excitement,
+                          uniqueness: formik.values.uniqueness,
+                          clarity: formik.values.clarity
+                        }}
+                        handleChange={formik.handleChange}
+                        errors={{
+                          strategic: formik.errors.strategic,
+                          luckFactor: formik.errors.luckFactor,
+                          funFactor: formik.errors.funFactor,
+                          replayValue: formik.errors.replayValue,
+                          excitement: formik.errors.excitement,
+                          uniqueness: formik.errors.uniqueness,
+                          clarity: formik.errors.clarity
+                        }}
+                    />
                 </div>
 
                 {/* Submit Button */}

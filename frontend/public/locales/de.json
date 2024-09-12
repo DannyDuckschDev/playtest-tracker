@@ -13,9 +13,14 @@
       "firstTime": "Spielst du das Spiel zum Ersten Mal?",
       "playStyle": "Was spielst du gerne?",
       "overallRating": "Gesamteindruck",
+      "rating": "Bitte bewerte die Aussagen",
       "strategic": "Wie strategisch fandest du das Spiel?",
       "luckFactor": "Wie glückslastig fandest du das Spiel?",
-      "funFactor": "Welchen FunFaktor hatte das Spiel für dich?"
+      "funFactor": "Welchen FunFaktor hatte das Spiel für dich?",
+      "replayValue": "Wie hoch ist der Wiederspielwert des Spiels?",
+      "excitement": "Wie spannend waren deine Spielentscheidungen?",
+      "uniqueness": "Wie einzigartig fandest du das Spiel?",
+      "clarity": "Wie klar fandest du die Spielregeln?"
     },
     "options": {
       "frequency": {
@@ -51,7 +56,9 @@
       "selectPlayStyle": "Bitte wähle mindestens einen Spielstil",
       "enterDemographics": "Fülle die Felder aus.",
       "selectFirstTime" : "Bitte wähle eine Option",
-      "rateOverallImpression": "Bitte bewerte den Gesamteindruck des Spiels"
+      "rateOverallImpression": "Bitte bewerte den Gesamteindruck des Spiels",
+      "selectRating": "Bitte wähle eine Bewertung aus",
+      "rateStatements": "Bitte bewerte die Aussagen"
     },
     "labels": {
       "name": "Vorname",
@@ -67,7 +74,14 @@
       "ageRequired": "Alter muss eine Zahl sein",
       "genderRequired": "Geschlecht ist erforderlich",
       "firstTimeRequired" : "Bitt wäle, ob du das Spiel zum ersten mal spielst",
-       "overallImpressionRequired": "Bitte bewerte den Gesamteindruck des Spiels"
+       "overallImpressionRequired": "Bitte bewerte den Gesamteindruck des Spiels",
+       "strategicRequired": "Bitte bewerte, wie strategisch das Spiel war",
+      "luckFactorRequired": "Bitte bewerte den Glücksfaktor des Spiels",
+      "funFactorRequired": "Bitte bewerte den FunFaktor des Spiels",
+      "replayValueRequired": "Bitte bewerte den Wiederspielwert des Spiels",
+      "excitementRequired": "Bitte bewerte, wie spannend die Entscheidungen im Spiel waren",
+      "uniquenessRequired": "Bitte bewerte, wie einzigartig das Spiel für dich war",
+      "clarityRequired": "Bitte bewerte die Klarheit der Spielregeln"
     }
   }
 }
