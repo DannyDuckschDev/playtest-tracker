@@ -1,4 +1,5 @@
-// frontend/src/components/blocks/GameRatingBlock.tsx
+//frontend/src/component/blocks/GameRatingBlock.tsx
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import BlockHeader from '../common/BlockHeader';
@@ -10,7 +11,7 @@ interface RatingQuestion {
 
 interface RatingProps {
   values: { [key: string]: number | undefined }; // Flexible values object
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // Formik handleChange
+  setFieldValue: (field: string, value: number) => void; // Formik setFieldValue
   errors?: { [key: string]: string | undefined }; // Flexible error object
 }
 
@@ -18,21 +19,23 @@ interface RatingProps {
 const renderRatingQuestions = (
   questions: RatingQuestion[],
   values: { [key: string]: number | undefined },
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  setFieldValue: (field: string, value: number) => void,
   errors?: { [key: string]: string | undefined }
 ) => {
   return questions.map((question) => (
     <div key={question.name} className="survey-rating">
       <label>{question.label}</label>
       <div className="rating-input">
-        {[1, 2, 3, 4, 5].map((value) => (
+        {[1, 2, 3, 4].map((value) => (
           <label key={`${question.name}-${value}`} className="rating-option">
             <input
               type="radio"
               name={question.name}
               value={value}
               checked={values[question.name] === value}
-              onChange={handleChange}
+              onChange={() => {
+                setFieldValue(question.name, value); // Explicitly set the value in Formik
+              }}
             />
             <span>{value}</span>
           </label>
@@ -43,10 +46,10 @@ const renderRatingQuestions = (
   ));
 };
 
-const GameRatingBlock: React.FC<RatingProps> = ({ values, handleChange, errors }) => {
+const GameRatingBlock: React.FC<RatingProps> = ({ values, setFieldValue, errors }) => {
   const { t } = useTranslation();
 
-  // Define the list of rating questions (dynamic & flexible)
+  // Definiere die Liste der Fragen und ihre Labels
   const ratingQuestions: RatingQuestion[] = [
     { name: 'strategic', label: t('survey.questions.strategic') },
     { name: 'luckFactor', label: t('survey.questions.luckFactor') },
@@ -59,14 +62,15 @@ const GameRatingBlock: React.FC<RatingProps> = ({ values, handleChange, errors }
 
   return (
     <div className="block form-group">
+      {/* BlockHeader wie im OverallImpressionBlock verwenden */}
       <BlockHeader
-        category="survey.categories.gameplay"
-        question={t('survey.questions.rating')}
-        task={t('survey.tasks.selectRating')}
+        category="survey.categories.feedback"
+        question="survey.questions.rating"
+        task="survey.tasks.selectRating"
       />
 
       {/* Render the rating questions */}
-      {renderRatingQuestions(ratingQuestions, values, handleChange, errors)}
+      {renderRatingQuestions(ratingQuestions, values, setFieldValue, errors)}
     </div>
   );
 };

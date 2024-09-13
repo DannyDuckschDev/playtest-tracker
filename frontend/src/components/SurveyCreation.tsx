@@ -63,6 +63,8 @@ const SurveyCreation: React.FC = () => {
         },
     });
 
+  
+
     return (
         <div className="survey-creation-container">
             {/* Survey Title */}
@@ -134,7 +136,7 @@ const SurveyCreation: React.FC = () => {
                           uniqueness: formik.values.uniqueness,
                           clarity: formik.values.clarity
                         }}
-                        handleChange={formik.handleChange}
+                        setFieldValue={formik.setFieldValue}
                         errors={{
                           strategic: formik.errors.strategic,
                           luckFactor: formik.errors.luckFactor,

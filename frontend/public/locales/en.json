@@ -1,43 +1,86 @@
 {
   "survey": {
     "title": "Create Survey",
-    "submit": "Save Survey",
+    "submit": "Save Questionnaire",
     "categories": {
-      "demographics": "Category: Demographics",
+      "demographics": "Category: Demographic Data",
       "gameplay": "Category: Gameplay Experience",
-      "feedback": "Category: Open Feedback"
+      "feedback": "Category: Feedback"
     },
     "questions": {
-      "frequency": "How often do you play board/card games?",
-      "firstTime": "Are you playing {{Spielname}} for the first time?",
-      "playStyle": "What do you like to play?",
+      "demographics": "Please provide your demographic data",
+      "frequency": "How often do you play board or card games?",
+      "firstTime": "Are you playing this game for the first time?",
+      "playStyle": "What kind of games do you like to play?",
       "overallRating": "Overall Impression",
-      "strategic": "How strategic was the game?",
-      "luckFactor": "How luck-dependent was the game?",
-      "funFactor": "How fun was the game for you?"
+      "rating": "Please rate the statements",
+      "strategic": "How strategic did you find the game?",
+      "luckFactor": "How luck-dependent did you find the game?",
+      "funFactor": "How fun was the game for you?",
+      "replayValue": "How high is the replay value of the game?",
+      "excitement": "How exciting were your game decisions?",
+      "uniqueness": "How unique did you find the game?",
+      "clarity": "How clear were the game rules for you?"
     },
     "options": {
       "frequency": {
-        "often": "multiple times a week",
+        "select": "Please select",
+        "often": "several times a week",
         "weekly": "once a week",
         "monthly": "once a month",
-        "multipleMonthly": "multiple times a month",
+        "multipleMonthly": "several times a month",
         "everyFewMonths": "every few months"
       },
       "playStyle": {
         "shortGames": "shorter games",
         "longGames": "longer games",
-        "simpleGames": "simpler games",
+        "simpleGames": "simple games",
         "complexGames": "more complex games",
         "familyGames": "family games",
-        "ConnoisseurGame": "Connoisseur game",
+        "ConnoisseurGame": "connoisseur games",
         "expertGames": "expert games"
+      },
+      "gender": {
+        "select": "Please select",
+        "female": "female",
+        "divers": "non-binary",
+        "male": "male"
+      },
+      "firstTime": {
+        "yes": "yes",
+        "no": "no"
       }
     },
+    "tasks": {
+      "selectFrequency": "Please select an option for game frequency",
+      "selectPlayStyle": "Please select at least one play style",
+      "enterDemographics": "Fill in the fields.",
+      "selectFirstTime": "Please select an option",
+      "rateOverallImpression": "Please rate your overall impression of the game",
+      "selectRating": "Please select a rating",
+      "rateStatements": "Please rate the statements"
+    },
+    "labels": {
+      "name": "First Name",
+      "age": "Age",
+      "gender": "Gender"
+    },
     "validation": {
-      "frequencyRequired": "Please select an option for frequency",
+      "frequencyRequired": "Please select an option for game frequency",
       "playStyleRequired": "Please select at least one play style",
-      "ratingRequired": "Please rate the game"
+      "ratingRequired": "Please rate the game",
+      "nameRequired": "Name is required",
+      "ageRequired": "Age must be a number",
+      "genderRequired": "Gender is required",
+      "firstTimeRequired": "Please select if you are playing the game for the first time",
+      "overallImpressionRequired": "Please rate your overall impression of the game",
+      "strategicRequired": "Please rate how strategic the game was",
+      "luckFactorRequired": "Please rate the luck factor of the game",
+      "funFactorRequired": "Please rate the fun factor of the game",
+      "replayValueRequired": "Please rate the replay value of the game",
+      "excitementRequired": "Please rate how exciting the decisions in the game were",
+      "uniquenessRequired": "Please rate how unique the game was for you",
+      "clarityRequired": "Please rate the clarity of the game rules"
     }
   }
 }

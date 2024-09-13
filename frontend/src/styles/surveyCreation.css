@@ -218,7 +218,7 @@ input[type="checkbox"]:checked::after {
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.rating-option input:checked span {
+.rating-option input:checked + span {
   background-color: var(--primary-color); /* Fill with primary color when checked */
   color: white;
   border-color: var(--primary-color-hover); /* Change border when checked */

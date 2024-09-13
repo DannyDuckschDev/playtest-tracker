@@ -1,5 +1,5 @@
 // frontend/src/components/blocks/BlockHeader.tsx
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface Props {
@@ -11,16 +11,21 @@ interface Props {
 const BlockHeader: React.FC<Props> = ({ category, question, task }) => {
   const { t } = useTranslation(); // Hook for translation
 
+  //Calculate translation one time when input change
+  const translatedCategory = useMemo(() => t(category), [category, t]);
+  const translatedQuestion = useMemo(() => t(question), [question, t]);
+  const translatedTask = useMemo(() => t(task), [task, t]); 
+
   return (
     <div>
       {/* Kategorie */}
       <div className="survey-block-category">
-        {t(category)} {/* Display translated category */}
+        {translatedCategory} {/* Display translated category */}
       </div>
 
       {/* Frage */}
       <div className="survey-block-question">
-        {t(question)} {/* Display translated question */}
+        {translatedQuestion} {/* Display translated question */}
       </div>
 
       {/* Trennlinie */}
@@ -28,7 +33,7 @@ const BlockHeader: React.FC<Props> = ({ category, question, task }) => {
 
       {/* Aufgabenstellung */}
       <p className="task-instruction">
-        {t(task)} {/* Display translated task/instruction */}
+        {translatedTask} {/* Display translated task/instruction */}
       </p>
     </div>
   );
