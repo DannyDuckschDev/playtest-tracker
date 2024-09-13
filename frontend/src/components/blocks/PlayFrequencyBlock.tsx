@@ -1,16 +1,28 @@
-// frontend/src/components/blocks/PlayFrequencyBlock.tsx
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import BlockHeader from '../common/BlockHeader';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-interface Props {
-  frequency: string; // The selected frequency value
-  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; // Event handler for changes in select dropdown
-  error?: string; // Optional error message
-}
+const PlayFrequencyBlock: React.FC = () => {
+  const { t } = useTranslation();
 
-const PlayFrequencyBlock: React.FC<Props> = ({ frequency, handleChange, error }) => {
-  const { t } = useTranslation(); // Hook for translation/localization
+  // Define Yup validation schema
+  const validationSchema = Yup.object({
+    frequency: Yup.string()
+      .required(t('survey.validation.frequencyRequired')) // Required validation message
+  });
+
+  // Formik setup
+  const formik = useFormik({
+    initialValues: {
+      frequency: '', // Default value for frequency
+    },
+    validationSchema, // Attach the Yup validation schema
+    onSubmit: (values) => {
+      console.log('Form submitted:', values); // Action on form submission (can be replaced by API call or other logic)
+    },
+  });
 
   return (
     <div className="block form-group">
@@ -18,14 +30,15 @@ const PlayFrequencyBlock: React.FC<Props> = ({ frequency, handleChange, error })
       <BlockHeader
         category="survey.categories.gameplay"
         question="survey.questions.frequency"
-        task="survey.tasks.selectFrequency" // Task instruction for the frequency question
+        task="survey.tasks.selectFrequency" 
       />
 
-      {/* Dropdown select for play frequency */}
+      {/* Formik's select input */}
       <select
         name="frequency"
-        value={frequency}
-        onChange={handleChange}
+        value={formik.values.frequency}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur} // Ensure blur is handled for validation
         className="form-control"
       >
         <option value="">{t('survey.options.frequency.select')}</option>
@@ -36,8 +49,10 @@ const PlayFrequencyBlock: React.FC<Props> = ({ frequency, handleChange, error })
         <option value="everyFewMonths">{t('survey.options.frequency.everyFewMonths')}</option>
       </select>
 
-      {/* Conditionally render error message if present */}
-      {error && <p className="error-text">{error}</p>}
+      {/* Conditionally render error message if validation fails */}
+      {formik.touched.frequency && formik.errors.frequency && (
+        <p className="error-text">{formik.errors.frequency}</p>
+      )}
     </div>
   );
 };

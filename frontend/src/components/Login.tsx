@@ -1,9 +1,9 @@
-// src/components/Login.tsx
-
-import React, { useState } from "react";
+import React from "react";
+import { useTranslation } from 'react-i18next'; // For translations
+import { useFormik } from 'formik'; // For form handling with Formik
+import * as Yup from 'yup'; // For form validation with Yup
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/login.css';
-import { useFormvalidation } from "../hooks/useFormValidation";
 import { useLogin } from "../hooks/useLogin";
 import { usePasswordToggle } from "../hooks/usePasswordToggle";
 import { Spinner } from "react-bootstrap";
@@ -13,89 +13,84 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Login: React.FC = () => {
-    // State variables for email, password, and form submission status
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [submitted, setSubmitted] = useState(false);
-    const [loading, setLoading] = useState<boolean>(false); //Loading state
+    const { t } = useTranslation(); // Hook for translations
 
-    // Custom hook to handle login functionality and potential errors
-    const { login, error } = useLogin();
+    const { login, error } = useLogin(); // Custom hook for login logic
+    const [passwordType, togglePasswordVisibility] = usePasswordToggle(); // Custom hook for password visibility toggle
 
-    // Custom hook to handle form validation, with specific rules for email and password
-    const { errors, validateForm, handleFieldChange } = useFormvalidation({
-        email: { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }, // Email validation pattern
-        password: { required: true, minLength: 8 }, // Minimum length for password
-    }, { validatePasswordComplexity: false }); // Password complexity validation disabled for login
-
-    // Custom hook to toggle password visibility between text and password types
-    const [passwordType, togglePasswordVisibility] = usePasswordToggle();
-
-    // Handle form submission
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault(); // Prevent default form submission behavior
-        setSubmitted(true); // Mark form as submitted
-        setLoading(true); // Set loading to true when request starts
-
-        const isValid = validateForm({ email, password }); // Validate form fields
-
-        if (isValid) {
+    // Formik setup for form handling and validation
+    const formik = useFormik({
+        initialValues: {
+            email: '', // Initial value for email
+            password: '', // Initial value for password
+        },
+        validationSchema: Yup.object({
+            email: Yup.string()
+                .email(t('loginValidation.emailInvalid')) // Translated validation message for invalid email
+                .required(t('loginValidation.emailRequired')), // Email is required
+            password: Yup.string()
+                .min(8, t('loginValidation.passwordMin')) // Password should be at least 8 characters
+                .required(t('loginValidation.passwordRequired')), // Password is required
+        }),
+        onSubmit: async (values, { setSubmitting }) => {
+            setSubmitting(true); // Start submission process
             try {
-                await login(email, password); // Use login from useLogin
+                await login(values.email, values.password); // Handle login logic
             } catch (error) {
                 console.error("Login failed", error);
             } finally {
-                setLoading(false); // Stop loading spinner regardless of success or failure
+                setSubmitting(false); // Stop submission process
             }
-        } else {
-            setLoading(false); // Stop loading spinner if validation fails
-        }
-    };
-
-    // Handle field changes and validation in real-time
-    const handleChange = (name: string, value: string, setValue: React.Dispatch<React.SetStateAction<string>>) => {
-        setSubmitted(false); // Reset submission status
-        handleFieldChange(name, value, setValue); // Handle field change and validation
-    };
+        },
+    });
 
     return (
         <div className="login-container">
-            <form onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                {submitted && error && <p className="error">{error}</p>} {/* Display error if form submitted with errors */}
+            <form onSubmit={formik.handleSubmit}>
+                <h2>{t('login.title')}</h2>
+
+                {formik.isSubmitting && error && <p className="error">{error}</p>} {/* Display error on form submission */}
+
+                {/* Email field */}
                 <div>
-                    <label htmlFor="email" className="form-label">Email</label>
+                    <label htmlFor="email" className="form-label">{t('login.email')}</label>
                     <input 
                         type="email"
-                        id="email"
+                        id="login-email"
                         className="form-control"
-                        value={email}
-                        onChange={(e) => handleChange('email', e.target.value, setEmail)}
-                        required
-                        disabled={loading} // Disable input while loading
+                        {...formik.getFieldProps('email')} // Use Formik props for input handling
+                        disabled={formik.isSubmitting} // Disable field when submitting
+                        autoComplete="email"
                     />
-                    {errors.email && <p className="error">{errors.email}</p>} {/* Display email validation error */}
+                    {formik.touched.email && formik.errors.email && (
+                        <p className="error">{formik.errors.email}</p> // Display validation error for email
+                    )}
                 </div>
+
+                {/* Password field */}
                 <div>
-                    <label htmlFor="password" className="form-label">Password</label>
+                    <label htmlFor="password" className="form-label">{t('login.password')}</label>
                     <div className="password-input-container">
                         <input 
                             type={passwordType} 
-                            id="password"
+                            id="login-password"
                             className="form-control"
-                            value={password}
-                            onChange={(e) => handleChange('password', e.target.value, setPassword)}
-                            required
-                            disabled={loading} // Disable input while loading
+                            {...formik.getFieldProps('password')} // Use Formik props for input handling
+                            disabled={formik.isSubmitting} // Disable field when submitting
+                            autoComplete="current-password"  // Fix autocomplete warning
                         />
                         <span className="password-toggle-icon" onClick={togglePasswordVisibility}>
                             <FontAwesomeIcon icon={passwordType === "password" ? faEyeSlash : faEye} />
                         </span>
                     </div>
-                    {errors.password && <p className="error">{errors.password}</p>} {/* Display password validation error */}
+                    {formik.touched.password && formik.errors.password && (
+                        <p className="error">{formik.errors.password}</p> // Display validation error for password
+                    )}
                 </div>
+
+                {/* Submit button */}
                 <button type="submit" className="btn btn-primary">
-                    {loading ? <Spinner animation="border" size="sm" /> : "Login"}
+                    {formik.isSubmitting ? <Spinner animation="border" size="sm" /> : t('login.submit')}
                 </button>
             </form>
         </div>

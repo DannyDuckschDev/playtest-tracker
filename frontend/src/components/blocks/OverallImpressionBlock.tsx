@@ -34,9 +34,9 @@ const OverallImpressionBlock: React.FC<Props> = () => {
     <div className="block form-group">
       {/* BlockHeader to display category, question, and task */}
       <BlockHeader
-        category="survey.categories.gameplay" // Survey category (e.g., "Spielerfahrung")
-        question="survey.questions.overallRating" // Survey question (e.g., "Gesamteindruck")
-        task="survey.tasks.rateOverallImpression" // Task instruction (e.g., "Bitte bewerten")
+        category="survey.categories.feedback" // Survey category 
+        question="survey.questions.overallRating" // Survey question 
+        task="survey.tasks.rateOverallImpression" // Task instruction 
       />
 
       {/* 5-star rating system */}
