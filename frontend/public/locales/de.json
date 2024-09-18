@@ -33,6 +33,7 @@
     "confirmPasswordRequired": "Bestätigung des Passworts ist erforderlich",
     "passwordWeak": "Password is too weak"
   },
+  "delete": "Umfrage löschen",
   "survey": {
     "title": "Umfrage erstellen",
     "submit": "Fragebogen speichern",
@@ -71,7 +72,7 @@
         "simpleGames": "einfache Spiele",
         "complexGames": "komplexere Spiele",
         "familyGames": "Familienspiele",
-        "ConnoisseurGame": "Kennerspiele",
+        "connoisseurGames": "Kennerspiele",
         "expertGames": "Expertenspiele"
       },
       "gender": {

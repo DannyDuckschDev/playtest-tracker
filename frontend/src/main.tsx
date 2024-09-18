@@ -6,7 +6,7 @@ import './i18n'; //Import the i18n configuration
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+    //removed StrictMode for the drag and drop functionality to work
     <App />
-  </React.StrictMode>,
+
 )
