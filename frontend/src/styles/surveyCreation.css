@@ -25,12 +25,13 @@
 /* ------ block styling ------*/
 .survey-block {
     background-color: var(--background-color-highlight);
-    padding: var(--spacing-medium);
+    padding: var(--spacing-large);
     margin-bottom: var(--spacing-large);
     border-radius: 8px;
     box-shadow: var(--box-shadow-primary);
     border-left: 5px solid var(--primary-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
 }
 
 .survey-block:hover {

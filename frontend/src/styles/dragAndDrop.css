@@ -1,0 +1,56 @@
+/* ----- Container for dragging ----- */
+.drag-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+    
+  /* ----- Dark shadow when dragging a block ----- */
+  .survey-block.dragging {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(2, 2, 43, 0.436), 0 20px 50px rgba(103, 61, 3, 0.532);
+    transform: scale(1.08);
+    z-index: 9999;
+  }
+  
+  
+  
+  /* ----- X button to delete block, placed at the top right ----- */
+  .delete-btn {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: red;
+    font-size: 1.7rem;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .delete-btn:hover {
+    color: darkred; /* Darker red on hover */
+  }
+  
+  .delete-btn::after {
+    content: attr(title); /* Tooltip using the title attribute */
+    visibility: hidden;
+    opacity: 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: -30px;
+    right: 0;
+    width: 150px;
+    transition: opacity 0.3s ease;
+    font-size: 0.8rem;
+  }
+  
+  .delete-btn:hover::after {
+    visibility: visible;
+    opacity: 1; /* Show tooltip on hover */
+  }
+  

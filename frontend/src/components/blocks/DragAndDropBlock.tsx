@@ -8,6 +8,10 @@ import PlayStyleBlock from './PlayStyleBlock';
 import FirstTimeBlock from './FirstTimeBlock';
 import OverallImpressionBlock from './OverallImpressionBlock';
 import GameRatingBlock from './GameRatingBlock';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../../styles/dragAndDrop.css';
+
 
 // Define the Block interface to represent each draggable block
 interface Block {
@@ -143,31 +147,38 @@ const DragAndDropBlock: React.FC<DragAndDropBlockProps> = ({ blocks, onBlocksCha
             {/* Render each block as draggable */}
             {blocks.map((block, index) => {
                 //console.log("Rendering block with ID:", block.id, "at index:", index);  // Debugging des Blocks
+              
                 return (
-                <Draggable key={block.id} draggableId={block.id} index={index}>
-                    {(provided, snapshot) => (
-                    <div
+                  <Draggable key={block.id} draggableId={block.id} index={index}>                    
+                  {(provided, snapshot) => {
+                    console.log('Snapshot:', snapshot); // Logging hier
+                
+                    return (
+                      <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         className={`survey-block ${snapshot.isDragging ? 'dragging' : ''}`}
-                    >
-                        {/* Render the block content based on its ID */}
-                        {renderBlockContent(block.id)}
-
-                        {/* Delete button to remove a block */}
+                      >
+                        {/* X icon button in the top right */}
                         <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => {
+                          className="btn btn-danger btn-sm delete-btn"
+                          onClick={() => {
                             const newBlocks = blocks.filter((b) => b.id !== block.id);
                             onBlocksChange(newBlocks);
-                        }}
+                          }}
+                          title="Block löschen. Alle Daten dieses Blocks gehen verloren"
                         >
-                        {`delete`}
+                          <FontAwesomeIcon icon={faTimes} />
                         </button>
-                    </div>
-                    )}
+                
+                        {/* Render the block content based on its ID */}
+                        {renderBlockContent(block.id)}
+                      </div>
+                    );
+                  }}
                 </Draggable>
+                
                 );
             })}
             {/* Placeholder to maintain space while dragging */}
