@@ -116,6 +116,12 @@
       "excitementRequired": "Bitte bewerte, wie spannend die Entscheidungen im Spiel waren",
       "uniquenessRequired": "Bitte bewerte, wie einzigartig das Spiel für dich war",
       "clarityRequired": "Bitte bewerte die Klarheit der Spielregeln"
+    },
+    "popup": {
+      "deleteTitle": "Block löschen bestätigen",
+      "deleteMessage": "Möchtest du diesen Block wirklich löschen? Alle enthaltenen Daten werden unwiderruflich entfernt. Klicke auf 'Ja', um den Block zu löschen, oder auf 'Abbrechen', um den Vorgang abzubrechen.",
+      "deleteConfirm": "Ja",
+      "deleteCancel": "Abbrechen"
     }
   }
 }

@@ -1,7 +1,7 @@
-// frontend/scr/components/blocks/DragAndDrop.tsx
-import React from 'react';
+// frontend/src/components/blocks/DragAndDropBlock.tsx
+import React, { useState } from 'react'; // Import useState to handle popup state
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
-import { FormikProps } from 'formik'; // Formik type to manage form props
+import { FormikProps } from 'formik';
 import DemographicsBlock from './DemographicBlock';
 import PlayFrequencyBlock from './PlayFrequencyBlock';
 import PlayStyleBlock from './PlayStyleBlock';
@@ -10,8 +10,8 @@ import OverallImpressionBlock from './OverallImpressionBlock';
 import GameRatingBlock from './GameRatingBlock';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../../styles/dragAndDrop.css';
-
+import DeletePopup from '../modals/DeletePopup'; // Import the DeletePopup component
+import '../../styles/dragAndDrop.css'
 
 // Define the Block interface to represent each draggable block
 interface Block {
@@ -44,24 +44,38 @@ interface DragAndDropBlockProps {
   formik: FormikProps<FormValues>; // Formik instance for form state and validation
 }
 
-// Handle the drag end event: reordering the blocks based on user interaction
 const DragAndDropBlock: React.FC<DragAndDropBlockProps> = ({ blocks, onBlocksChange, formik }) => {
+  const [showDeletePopup, setShowDeletePopup] = useState<boolean>(false); // Popup state
+  const [blockToDelete, setBlockToDelete] = useState<string | null>(null); // Block to delete
+
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) {
-        // If no destination exists, exit early (user dropped outside the droppable area)
       return;
     }
-
-    // Create a copy of the blocks array and reorder based on the drag result    
     const reorderedBlocks = Array.from(blocks);
     const [removed] = reorderedBlocks.splice(result.source.index, 1);
     reorderedBlocks.splice(result.destination.index, 0, removed);
-
-    // Update the blocks with the new order
     onBlocksChange(reorderedBlocks);
   };
 
-  // Renders the content for each block based on the block ID
+  const handleDeleteClick = (blockId: string) => {
+    setBlockToDelete(blockId);
+    setShowDeletePopup(true); // Show the popup
+  };
+
+  const handleConfirmDelete = () => {
+    if (blockToDelete) {
+      const updatedBlocks = blocks.filter((b) => b.id !== blockToDelete);
+      onBlocksChange(updatedBlocks);
+    }
+    setShowDeletePopup(false); // Close the popup
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeletePopup(false); // Close the popup without deleting
+    setBlockToDelete(null);
+  };
+
   const renderBlockContent = (blockId: string) => {
     switch (blockId) {
       case '1':
@@ -140,54 +154,48 @@ const DragAndDropBlock: React.FC<DragAndDropBlockProps> = ({ blocks, onBlocksCha
   };
 
   return (
-    <DragDropContext onDragEnd={handleDragEnd}>
-      <Droppable droppableId="droppable-blocks">
-        {(provided) => (
+    <>
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <Droppable droppableId="droppable-blocks">
+          {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps} className="drag-container">
-            {/* Render each block as draggable */}
-            {blocks.map((block, index) => {
-                //console.log("Rendering block with ID:", block.id, "at index:", index);  // Debugging des Blocks
-              
-                return (
-                  <Draggable key={block.id} draggableId={block.id} index={index}>                    
-                  {(provided, snapshot) => {
-                    console.log('Snapshot:', snapshot); // Logging hier
-                
-                    return (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className={`survey-block ${snapshot.isDragging ? 'dragging' : ''}`}
+              {blocks.map((block, index) => (
+                <Draggable key={block.id} draggableId={block.id} index={index}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      className={`survey-block ${snapshot.isDragging ? 'dragging' : ''}`}
+                    >
+                      {/* X icon button in the top right */}
+                      <button
+                        className="delete-btn btn btn-danger btn-sm"
+                        onClick={() => handleDeleteClick(block.id)}
                       >
-                        {/* X icon button in the top right */}
-                        <button
-                          className="btn btn-danger btn-sm delete-btn"
-                          onClick={() => {
-                            const newBlocks = blocks.filter((b) => b.id !== block.id);
-                            onBlocksChange(newBlocks);
-                          }}
-                          title="Block löschen. Alle Daten dieses Blocks gehen verloren"
-                        >
-                          <FontAwesomeIcon icon={faTimes} />
-                        </button>
-                
-                        {/* Render the block content based on its ID */}
-                        {renderBlockContent(block.id)}
-                      </div>
-                    );
-                  }}
-                </Draggable>
-                
-                );
-            })}
-            {/* Placeholder to maintain space while dragging */}
-            {provided.placeholder}
-            </div>
-        )}
-        </Droppable>
+                        <FontAwesomeIcon icon={faTimes} />
+                      </button>
 
-    </DragDropContext>
+                      {/* Render the block content based on its ID */}
+                      {renderBlockContent(block.id)}
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+
+      {/* Render DeletePopup only when the popup is triggered */}
+      {showDeletePopup && (
+        <DeletePopup
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+        />
+      )}
+    </>
   );
 };
 
