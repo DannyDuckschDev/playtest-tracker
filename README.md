@@ -10,6 +10,7 @@ Die Playtest Tracking App befindet sich noch in der Entwicklung. Folgende Funkti
 5. **Backendspeicherung der Fragebogeneinstellungen**: Speichern aller Einstellungen eines Fragebogens auf dem Server.
 6. **QR-Code-Teilen**: Möglichkeit, den Fragebogen über einen QR-Code zu teilen, damit Playtester*innen diesen ausfüllen können.
 7. **Speichern und visuelle Darstellung der Ergebnisse**: Die Ergebnisse der Umfragen sollen gespeichert und auf einem Dashboard visuell aufbereitet werden, damit die Spieleautor*innen die Testergebnisse auswerten können.
+   
 Ich arbeite aktiv daran, diese Funktionen fertigzustellen und die App in den kommenden Updates zu verbessern.
 
 ---
