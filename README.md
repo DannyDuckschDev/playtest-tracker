@@ -89,6 +89,7 @@ Richte eine Datenbank für die Playtest-Daten ein und führe gegebenenfalls SQL-
 ---
 
 ## Technologien
+Dies ist eine Full-Stack-Anwendung, die sowohl Frontend- als auch Backend-Komponenten umfasst:
 
 - Vite: Entwicklungsserver für schnelles Bauen und Hot-Reloading des Frontends.
 - React: Hauptbibliothek für die UI-Erstellung.
