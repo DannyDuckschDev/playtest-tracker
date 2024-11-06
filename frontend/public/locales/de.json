@@ -121,7 +121,15 @@
       "deleteTitle": "Block löschen bestätigen",
       "deleteMessage": "Möchtest du diesen Block wirklich löschen? Alle enthaltenen Daten werden unwiderruflich entfernt. Klicke auf 'Ja', um den Block zu löschen, oder auf 'Abbrechen', um den Vorgang abzubrechen.",
       "deleteConfirm": "Ja",
-      "deleteCancel": "Abbrechen"
+      "deleteCancel": "Abbrechen",
+      "deleteTooltip": "Block löschen. Alle Daten dieses Blockes gehen verloren",
+      "editMode": "Bearbeitungsmodus aktivieren",
+      "editCategory": "Kategorie bearbeiten",
+      "editQuestion": "Frage bearbeiten",
+      "editTask": "Aufgabenstellung bearbeiten",
+      "save": "Speichern",
+      "cancel": "Abbrechen"
+
     }
   }
 }

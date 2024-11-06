@@ -17,7 +17,8 @@
     padding: var(--spacing-large);
     border-radius: 10px;
     box-shadow: var(--box-shadow-primary);
-    width: 500px;
+    /*width: 500px; */
+    max-width: 600px;
     text-align: left;
     margin: var(--spacing-large);
 }
