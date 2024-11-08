@@ -1,8 +1,17 @@
-// backend/tests/surveyRoutes.test.js
+// backend/tests/surveyRoutes.test.ts
 
-const request = require('supertest');
-const app = require('../app'); // Import the Express app
-const { sequelize } = require('../config/db'); // Import Sequelize instance
+import request from 'supertest';
+import app from '../app'; // Import the Express app
+import { sequelize } from '../config/db'; // Import Sequelize instance
+
+// Interface to type the response from created survey
+interface SurveyResponse {
+    id: number;
+    title: string;
+    description?: string;
+    questions: Record<string, any>;
+    createdBy: number;
+}
 
 // Before running any tests, sync the database
 beforeAll(async () => {
@@ -10,7 +19,7 @@ beforeAll(async () => {
 });
 
 describe('Survey Routes', () => {
-    let surveyId;
+    let surveyId: number;
 
     // Test creating a new survey
     it('should create a new survey', async () => {
@@ -25,9 +34,17 @@ describe('Survey Routes', () => {
                 },
                 createdBy: 1,
             });
-        
+
+        // Cast res.body to SurveyResponse to enforce the expected structure
+        const surveyData = res.body as SurveyResponse;
+
+        // Validate the status code an the structure of the response
         expect(res.statusCode).toEqual(201);
         expect(res.body).toHaveProperty('id');
+        expect(surveyData.title).toEqual('Test Survey');
+        expect(surveyData.description).toEqual('This is a test survey');
+
+        //Save the survey ID for other tests
         surveyId = res.body.id;
     });
 
