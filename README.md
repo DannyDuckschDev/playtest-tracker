@@ -49,24 +49,43 @@ Die Playtest Tracking App ermöglicht es Spieleentwickler:innen und QA-Teams, de
    cd ../backenc
    npm install
    ````
+   **	Authentifizierung und Sicherheit**
+	Diese Pakete werden für die Authentifizierung und das Handling von Passwörtern benötigt:
+   ````bash
+   npm install bcryptjs jsonwebtoken
+   ````
+
+   **	Validierung **
+   Verwende express-validator für die Validierung von Anfragen:
+   ````bash
+   npm install express-validator
+   npm install supertest
+   npm install jest
+   ````
+
+   **	Typen für TypeScript **
+	Für TypeScript spezifische Typdefinitionen, um die verwendeten Libraries in einer TypeScript-Umgebung zu unterstützen:
+   ````bash
+   npm install --save-dev @types/express@4.17.13 @types/sequelize @types/bcryptjs @types/jsonwebtoken @types/jest @types/supertest
+   ````
    
-5. **XAMPP einrichten**:
+6. **XAMPP einrichten**:
    - Apache und MySQL in XAMPP starten
    - Stelle sicher, dass deine MySQL-Datenbank läuft und die Konfigurationsdateien entsprechend angepasst sind (z.B. config.php oder .env im Backend).
 Richte eine Datenbank für die Playtest-Daten ein und führe gegebenenfalls SQL-Skripte zur Einrichtung aus.
 
-6. **Backend-Server starten** im Backend-Ordner:
+7. **Backend-Server starten** im Backend-Ordner:
    ````bash
    npm run dev
    ````
 
-7. **Frontend starten**:
+8. **Frontend starten**:
    Wechsel zurück in den frontend-Ornder und starte die App im Entwicklungsmodus (über Vite).
    ````bash
    npm run dev
    ````
 
-8. **Zugriff auf die App**:
+9. **Zugriff auf die App**:
    Öffne den Browser und gehe zu http://localhost:5173 , um die App im Frontend anzuzeigen.
    
 ---
