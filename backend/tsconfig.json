@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "types": ["node", "jest"],
       "target": "ES6",
       "module": "commonjs",
       "strict": true,
@@ -9,6 +10,6 @@
       "forceConsistentCasingInFileNames": true,
       "skipLibCheck": false
     },
-    "include": ["src"],
+    "include": ["src", "jest.config.ts", "tests"],
   }
   

@@ -6,11 +6,16 @@ dotenv.config({
     path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
 }); // Loads the environment variables depending on the environment
 
+//Debug Output
+//console.log("Environment:", process.env.NODE_ENV);
+//console.log("Database Name:", process.env.DB_NAME);
+//console.log("Database User:", process.env.DB_USER);
+
 // Creates a connection to MariaDB with types
 const sequelize: Sequelize = new Sequelize(
     process.env.DB_NAME as string,
     process.env.DB_USER as string,
-    process.env.DB_PASS as string,
+    process.env.DB_PASS || '',
     {
         host: process.env.DB_HOST,
         dialect: 'mysql',

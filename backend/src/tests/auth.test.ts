@@ -12,9 +12,14 @@ beforeAll(async () => {
 
 // Clean up the Users table before each test
 beforeEach(async () => {
+    await sequelize.sync();
     await sequelize.query('SET FOREIGN_KEY_CHECKS = 0'); // Deactivates foreign key checks
     await User.destroy({ where: {}, truncate: true });
     await sequelize.query('SET FOREIGN_KEY_CHECKS = 1'); // Reactivates foreign key checks
+
+    //Debugging
+    //const users = await User.findAll();
+    //console.log('Amount User before each Test:', users.length); //Should be 0
 });
 
 // Close the database connection after all tests are done
@@ -32,6 +37,8 @@ describe('Auth Endpoints', () => {
                 email: "test@example.com",
                 password: 'password123'
             });
+        //console.log("Response Body:", res.body); //Debugging Log
+        //console.log("Response Status:", res.statusCode); //Debugging Log
         expect(res.statusCode).toEqual(200);
         expect(res.body).toHaveProperty('token');
     }, 20000);
@@ -44,6 +51,8 @@ describe('Auth Endpoints', () => {
                 email: "test2@example.com",
                 password: 'password123'
             });
+        //console.log("Response Body:", res.body); //Debugging Log
+        //console.log("Response Status:", res.statusCode); //Debugging Log
         expect(res.statusCode).toEqual(400);
         expect(res.body.errors).toHaveLength(1);
         expect(res.body.errors[0].msg).toEqual('Username is required');
@@ -58,6 +67,8 @@ describe('Auth Endpoints', () => {
                 email: "invalid-email",
                 password: 'password123'
             });
+        //console.log("Response Body:", res.body); //Debugging Log
+        //console.log("Response Status:", res.statusCode); //Debugging Log
         expect(res.statusCode).toEqual(400);
         expect(res.body.errors).toHaveLength(1);
         expect(res.body.errors[0].msg).toEqual('Please include a valid email');
@@ -74,7 +85,7 @@ describe('Auth Endpoints', () => {
             });
         expect(res.statusCode).toEqual(400);
         expect(res.body.errors).toHaveLength(1);
-        expect(res.body.errors[0].msg).toEqual('Password must be at least 6 characters long');
+        expect(res.body.errors[0].msg).toEqual('Password must be at least 8 characters long');
     }, 20000);
 
     // Test to ensure registration fails if the email is already in use
@@ -139,7 +150,7 @@ describe('Auth Endpoints', () => {
         expect(res.statusCode).toEqual(400);
         expect(res.body.errors).toHaveLength(2);
         expect(res.body.errors[0].msg).toEqual('Password is required');
-        expect(res.body.errors[1].msg).toEqual('Password must be at least 6 characters long');
+        expect(res.body.errors[1].msg).toEqual('Password must be at least 8 characters long');
     }, 20000);
 
     // Test to ensure login fails if the password is incorrect
