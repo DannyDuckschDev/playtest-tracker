@@ -15,6 +15,7 @@
   --background-color-primary: #ff7f50;
   --background-color-secondary: #1abc9c64;
   --text-color: #ecf0f1; /* Text color: Light gray/white for readability */
+  --text-color-dark: #414040;
   
   /* Spacing Variables */
   --spacing-small: 0.5rem; /* Small spacing (8px) */

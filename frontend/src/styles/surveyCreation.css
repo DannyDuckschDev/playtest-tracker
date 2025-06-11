@@ -6,11 +6,13 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: var(--background-color);
     padding: 2rem;
     height: auto;
 }
 
+.heading-section-dashboard {
+  color: var(--text-color-dark);
+}
 /* ------ form styling ------*/
 .survey-form {
     background-color: var(--background-color-contrast-light);

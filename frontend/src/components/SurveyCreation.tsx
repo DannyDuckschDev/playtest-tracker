@@ -92,7 +92,7 @@ const SurveyCreation: React.FC = () => {
   return (
     <div className="survey-creation-container">
       {/* Survey title */}
-      <h2>{t('survey.title')}</h2>
+      <h2 className='heading-section-dashboard'>{t('survey.title')}</h2>
 
       {/* Form submission with Formik's handleSubmit */}
       <form onSubmit={formik.handleSubmit} className="survey-form">

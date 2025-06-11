@@ -5,6 +5,7 @@ import '../src/styles/variables.css'; //Import the CSS variables
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from "./components/Dashboard";
 import AuthPage from "./components/AuthPage";
+import './styles/App.css';
 
 const App: React.FC = () => {
   return (
