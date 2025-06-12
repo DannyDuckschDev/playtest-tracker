@@ -1,0 +1,11 @@
+# Ignore local-only configuration
+.npmrc
+.env
+.env.*    # optional, if you use environment-specific files
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build outputs (in case you build backend)
+dist/

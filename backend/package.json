@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
+    "start": "ts-node src/app.ts",
+    "dev": "nodemon --watch src --exec ts-node src/app.ts",
     "test": "cross-env NODE_ENV=test jest --runInBand",
-    "start": "node app.js",
-    "dev": "nodemon app.js",
     "migrate": "npx sequelize-cli db:migrate --config src/config/sequelize-config.js --migrations-path src/migrations"
   },
   "keywords": [],
