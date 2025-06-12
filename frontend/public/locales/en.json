@@ -1,86 +1,134 @@
 {
-  "survey": {
-    "title": "Create Survey",
-    "submit": "Save Questionnaire",
-    "categories": {
-      "demographics": "Category: Demographic Data",
-      "gameplay": "Category: Gameplay Experience",
-      "feedback": "Category: Feedback"
+    "login": {
+        "title": "Login",
+        "email": "Email",
+        "password": "Password",
+        "submit": "Log in"
     },
-    "questions": {
-      "demographics": "Please provide your demographic data",
-      "frequency": "How often do you play board or card games?",
-      "firstTime": "Are you playing this game for the first time?",
-      "playStyle": "What kind of games do you like to play?",
-      "overallRating": "Overall Impression",
-      "rating": "Please rate the statements",
-      "strategic": "How strategic did you find the game?",
-      "luckFactor": "How luck-dependent did you find the game?",
-      "funFactor": "How fun was the game for you?",
-      "replayValue": "How high is the replay value of the game?",
-      "excitement": "How exciting were your game decisions?",
-      "uniqueness": "How unique did you find the game?",
-      "clarity": "How clear were the game rules for you?"
+    "register": {
+        "title": "Register",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "submit": "Register"
     },
-    "options": {
-      "frequency": {
-        "select": "Please select",
-        "often": "several times a week",
-        "weekly": "once a week",
-        "monthly": "once a month",
-        "multipleMonthly": "several times a month",
-        "everyFewMonths": "every few months"
-      },
-      "playStyle": {
-        "shortGames": "shorter games",
-        "longGames": "longer games",
-        "simpleGames": "simple games",
-        "complexGames": "more complex games",
-        "familyGames": "family games",
-        "ConnoisseurGame": "connoisseur games",
-        "expertGames": "expert games"
-      },
-      "gender": {
-        "select": "Please select",
-        "female": "female",
-        "divers": "non-binary",
-        "male": "male"
-      },
-      "firstTime": {
-        "yes": "yes",
-        "no": "no"
-      }
+    "loginValidation": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Invalid email address",
+        "passwordRequired": "Password is required",
+        "passwordMin": "Password must be at least 8 characters long"
     },
-    "tasks": {
-      "selectFrequency": "Please select an option for game frequency",
-      "selectPlayStyle": "Please select at least one play style",
-      "enterDemographics": "Fill in the fields.",
-      "selectFirstTime": "Please select an option",
-      "rateOverallImpression": "Please rate your overall impression of the game",
-      "selectRating": "Please select a rating",
-      "rateStatements": "Please rate the statements"
+    "registerValidation": {
+        "usernameRequired": "Username is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Invalid email address",
+        "passwordRequired": "Password is required",
+        "passwordMin": "Your password must be at least 8 characters long. ",
+        "passwordUpperCase": "Your password must contain at least one uppercase letter.",
+        "passwordLowerCase": "Your password must contain at least one lowercase letter.",
+        "passwordNumber": "Your password must contain at least one number. ",
+        "passwordSpecialChar": "Your password must contain at least one special character.",
+        "passwordsMustMatch": "The passwords must match",
+        "confirmPasswordRequired": "Confirmation of the password is required",
+        "passwordWeak": "Password is too weak"
     },
-    "labels": {
-      "name": "First Name",
-      "age": "Age",
-      "gender": "Gender"
-    },
-    "validation": {
-      "frequencyRequired": "Please select an option for game frequency",
-      "playStyleRequired": "Please select at least one play style",
-      "ratingRequired": "Please rate the game",
-      "nameRequired": "Name is required",
-      "ageRequired": "Age must be a number",
-      "genderRequired": "Gender is required",
-      "firstTimeRequired": "Please select if you are playing the game for the first time",
-      "overallImpressionRequired": "Please rate your overall impression of the game",
-      "strategicRequired": "Please rate how strategic the game was",
-      "luckFactorRequired": "Please rate the luck factor of the game",
-      "funFactorRequired": "Please rate the fun factor of the game",
-      "replayValueRequired": "Please rate the replay value of the game",
-      "excitementRequired": "Please rate how exciting the decisions in the game were",
-      "uniquenessRequired": "Please rate how unique the game was for you",
-      "clarityRequired": "Please rate the clarity of the game rules"
+    "delete": "Delete survey",
+    "survey": {
+        "title": "Create survey",
+        "submit": "Save questionnaire",
+        "categories": {
+            "demographics": "Category: demographic data",
+            "gameplay": "Category: game experience",
+            "feedback": "Category: feedback"
+        },
+        "questions": {
+            "demographics": "Please enter your demographic data",
+            "frequency": "How regularly do you play board / card games? ",
+            "firstTime": "Is this your first time playing the game?",
+            "playStyle": "What do you like to play? ",
+            "overallRating": "Overall impression",
+            "rating": "Please rate the statements",
+            "strategic": "How strategic did you find the game?",
+            "luckFactor": "How luck-heavy did you find the game?",
+            "funFactor": "What fun factor did the game have for you? ",
+            "replayValue": "How high is the replay value of the game?",
+            "excitement": "How exciting were your game decisions?",
+            "uniqueness": "How unique did you find the game?",
+            "clarity": "How clear did you find the rules of the game?"
+        },
+        "options": {
+        "frequency": {
+            "select": "Please select",
+            "often": "several times a week",
+            "weekly": "once a week",
+            "monthly": "once a month",
+            "multipleMonthly": "several times a month",
+            "everyFewMonths": "every few months"
+        },
+        "playStyle": {
+            "shortGames": "shorter games",
+            "longGames": "longer games",
+            "simpleGames": "simple games",
+            "complexGames": "more complex games",
+            "familyGames": "family games",
+            "connoisseurGames": "connoisseur games",
+            "expertGames": "expert games"
+        },
+        "gender": {
+            "select": "Please select",
+            "female": "female",
+            "diverse": "diverse",
+            "male": "male"
+        },
+        "firstTime": {
+            "yes": "Yes",
+            "no": "No"
+        }
+        },
+        "tasks": {
+            "selectFrequency": "Please select an option for the frequency of play",
+            "selectPlayStyle": "Please select at least one play style",
+            "enterDemographics": "Fill in the fields.",
+            "selectFirstTime": "Please select an option",
+            "rateOverallImpression": "Please rate the overall impression of the game",
+            "selectRating": "Please select a rating",
+            "rateStatements": "Please rate the statements"
+        },
+        "labels": {
+            "name": "First name",
+            "age": "Age",
+            "gender": "Gender"
+        },
+        "validation": {
+            "frequencyRequired": "Please select an option for the frequency of play",
+            "playStyleRequired": "Please select at least one play style",
+            "ratingRequired": "Please rate the game",
+            "nameRequired": "Name is required",
+            "ageRequired": "Age must be a number",
+            "genderRequired": "Gender is required",
+            "firstTimeRequired": "Please choose if this is your first time playing the game",
+            "overallImpressionRequired": "Please rate the overall impression of the game",
+            "strategicRequired": "Please rate how strategic the game was",
+            "luckFactorRequired": "Please rate the luck factor of the game",
+            "funFactorRequired": "Please rate the funFactor of the game",
+            "replayValueRequired": "Please rate the replay value of the game",
+            "excitementRequired": "Please rate how exciting the decisions in the game were",
+            "uniquenessRequired": "Please rate how unique the game was for you",
+            "clarityRequired": "Please rate the clarity of the game rules"
+        },
+        "popup": {
+            "deleteTitle": "Confirm block deletion",
+            "deleteMessage": "Do you really want to delete this block? All contained data will be irrevocably removed. Click on 'Yes' to delete the block or on 'Cancel' to cancel the process.",
+            "deleteConfirm": "Yes",
+            "deleteCancel": "Cancel",
+            "deleteTooltip": "Delete block. All data in this block will be lost",
+            "editMode": "Activate edit mode",
+            "editCategory": "Edit category",
+            "editQuestion": "Edit question",
+            "editTask": "Edit task",
+            "save": "Save",
+            "cancel": "Cancel"
+        }
     }
-  }
 }

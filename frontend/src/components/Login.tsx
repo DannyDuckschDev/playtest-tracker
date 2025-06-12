@@ -1,7 +1,9 @@
+// frontend/src/components/Login.tsx
+
 import React from "react";
-import { useTranslation } from 'react-i18next'; // For translations
-import { useFormik } from 'formik'; // For form handling with Formik
-import * as Yup from 'yup'; // For form validation with Yup
+import { useTranslation } from 'react-i18next';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/login.css';
 import { useLogin } from "../hooks/useLogin";

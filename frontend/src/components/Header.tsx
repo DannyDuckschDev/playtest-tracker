@@ -1,4 +1,4 @@
-// src/components/Header.tsx
+// frontend/src/components/Header.tsx
 
 import { FC } from "react";
 import { PersonCircle } from "react-bootstrap-icons";

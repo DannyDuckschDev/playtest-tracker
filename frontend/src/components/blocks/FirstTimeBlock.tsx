@@ -1,4 +1,12 @@
 // frontend/src/components/blocks/FirstTimeBlock.tsx
+
+/**
+ * This block renders a question asking whether the player is playing the game for the first time.
+ * It uses Formik to manage the form state and Yup for validation.
+ * The input is handled via radio buttons ("yes" or "no"), and validation ensures that a selection is required.
+ * The component also supports translation for multilingual surveys via react-i18next.
+ */
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import BlockHeader from '../common/BlockHeader';

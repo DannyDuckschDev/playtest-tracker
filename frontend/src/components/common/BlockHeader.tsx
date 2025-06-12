@@ -1,4 +1,12 @@
 // frontend/src/components/blocks/BlockHeader.tsx
+
+/**
+ * A reusable component that renders a localized header section
+ * including category, question, and task/instruction text.
+ * Uses react-i18next for internationalization.
+ */
+
+
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,31 +17,31 @@ interface Props {
 }
 
 const BlockHeader: React.FC<Props> = ({ category, question, task }) => {
-  const { t } = useTranslation(); // Hook for translation
+  const { t } = useTranslation(); // i18n hook to access translations
 
-  //Calculate translation one time when input change
+  // Memoize translations to avoid recalculating on every render
   const translatedCategory = useMemo(() => t(category), [category, t]);
   const translatedQuestion = useMemo(() => t(question), [question, t]);
   const translatedTask = useMemo(() => t(task), [task, t]); 
 
   return (
     <div>
-      {/* Kategorie */}
+      {/* Display the translated category label */}
       <div className="survey-block-category">
-        {translatedCategory} {/* Display translated category */}
+        {translatedCategory}
       </div>
 
-      {/* Frage */}
+      {/* Display the translated main question */}
       <div className="survey-block-question">
-        {translatedQuestion} {/* Display translated question */}
+        {translatedQuestion}
       </div>
 
-      {/* Trennlinie */}
+      {/* Visual separator line  */}
       <div className="survey-block-separator" />
 
-      {/* Aufgabenstellung */}
+      {/* Display the translated task/instruction text */}
       <p className="task-instruction">
-        {translatedTask} {/* Display translated task/instruction */}
+        {translatedTask}
       </p>
     </div>
   );

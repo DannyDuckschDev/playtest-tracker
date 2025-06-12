@@ -28,6 +28,9 @@ interface FormValues {
   excitement: number;
   uniqueness: number;
   clarity: number;
+  category: string;
+  question: string;
+  task: string;
 }
 
 const SurveyCreation: React.FC = () => {
@@ -67,6 +70,9 @@ const SurveyCreation: React.FC = () => {
       excitement: 0,
       uniqueness: 0,
       clarity: 0,
+      category: '',
+      question: '',
+      task: '', 
     },
     validationSchema, // Attach validation schema
     onSubmit: (values) => {

@@ -11,7 +11,8 @@ i18n
     .use(LanguageDetector) //Detect using http
     .use(initReactI18next) //Pass the i18n instance to React
     .init({
-        fallbackLng: 'de', //Default language
+        lng: 'en', // force language manually
+        fallbackLng: 'en', //Default language
         debug: true,
         interpolation: {
             escapeValue: false //React already does escaping

@@ -1,8 +1,16 @@
+// frontend/src/blocks/PlayStyleBlock.tsx
+
+/**
+ * This component renders a list of checkboxes allowing users to select preferred play styles.
+ * It receives the selected options, a change handler, and optional error message via props.
+ * Translations are handled using react-i18next.
+ */
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import BlockHeader from '../common/BlockHeader';
 
-// Define the expected Props interface
+
 interface Props {
   playStyle: string[]; // Expecting an array of selected play styles
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // Event handler for checkbox changes

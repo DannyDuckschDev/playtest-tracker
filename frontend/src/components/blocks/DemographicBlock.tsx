@@ -1,4 +1,11 @@
 // frontend/src/components/blocks/DemographicsBlock.tsx
+
+/**
+ * This block collects basic demographic data using Formik for form state
+ * and Yup for validation. Each field is connected to Formik's state,
+ * and validation errors are shown below the inputs.
+ */
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';

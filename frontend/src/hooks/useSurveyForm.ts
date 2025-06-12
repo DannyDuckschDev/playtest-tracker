@@ -2,17 +2,17 @@ import { useState } from "react";
 
 // Define the SurveyData type to structure the form data
 interface SurveyData {
-    frequency: string;        // Stores the selected play frequency
-    firstTime: boolean;       // Tracks if the player is a first-time player
-    playStyle: string[];      // Stores the selected play styles as an array
-    overallRating: number;    // Stores the overall game rating
-    strategic: number;        // Stores the strategic rating
-    funFactor: number;        // Stores the fun factor rating
+    frequency: string;        // Selected play frequency
+    firstTime: boolean;       // Whether the player is playing for the first time
+    playStyle: string[];      // Selected play styles
+    overallRating: number;    // Overall game rating
+    strategic: number;        // Strategic depth rating
+    funFactor: number;        // Fun factor rating
 }
 
-// Custom hook to manage survey form data and interactions
+// Custom hook to manage survey form state and logic
 export const useSurveyForm = () => {
-    // State for managing the survey data, initialized with default values
+    // State for managing form data, initialized with default value
     const [surveyData, setSurveyData] = useState<SurveyData>({
         frequency: '',        // Initially no frequency selected
         firstTime: false,     // Default to not a first-time player
@@ -22,13 +22,13 @@ export const useSurveyForm = () => {
         funFactor: 0,         // Default fun factor rating is 0
     });
 
-    // Handle input changes for text and select inputs in the form
+    // Handle input changes for text and select fields
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value, type } = e.target; // Extract name, value, and type from the event target
+        const { name, value, type } = e.target;
 
-        let parsedValue: string | number = value; // Initialize parsedValue as string or number
+        let parsedValue: string | number = value;
         if (type === 'number') {
-            parsedValue = parseFloat(value); // Convert to number if input type is 'number'
+            parsedValue = parseFloat(value);
         }
 
         // Update the surveyData state with the new value
@@ -38,23 +38,23 @@ export const useSurveyForm = () => {
         });
     };
 
-    // Toggle the boolean values for checkboxes (e.g., firstTime)
+    // Toggle the boolean values for checkboxes
     const toggleCheckbox = (name: keyof SurveyData) => {
         // Check if the field is a boolean before toggling
         if (typeof surveyData[name] === 'boolean') {
             setSurveyData({
                 ...surveyData,
-                [name]: !(surveyData[name] as boolean),  // Toggle the boolean value
+                [name]: !(surveyData[name] as boolean),
             });
         } else {
-            console.warn(`The field ${name} is not a boolean and cannot be toggled.`); // Warn if the field isn't a boolean
+            console.warn(`The field ${name} is not a boolean and cannot be toggled.`);
         }
     };
 
     // Return the survey data and handlers to be used in components
     return {
-        surveyData,            // The current state of the survey form
-        handleInputChange,     // Function to handle input changes
-        toggleCheckbox,        // Function to toggle boolean values (checkboxes)
+        surveyData,
+        handleInputChange,
+        toggleCheckbox,
     };
 };

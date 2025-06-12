@@ -1,21 +1,29 @@
 // frontend/src/components/blocks/OverallImpressionBlock.tsx
+
+/**
+ * 
+ * This component renders a 5-star rating block that collects the user's overall impression
+ * of the game. It uses Formik for form handling and Yup for validation. Translations are
+ * provided through react-i18next, and the visual stars are rendered using Bootstrap icons.
+ */
+
 import React from 'react';
-import { useTranslation } from 'react-i18next'; // i18n hook for translations
-import { Star, StarFill } from 'react-bootstrap-icons'; // Bootstrap Icons for stars
-import BlockHeader from '../common/BlockHeader'; // Reusable BlockHeader component
+import { useTranslation } from 'react-i18next'; 
+import { Star, StarFill } from 'react-bootstrap-icons';
+import BlockHeader from '../common/BlockHeader';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 interface Props {
   rating: number; // Current rating value (1-5)
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // Event handler for rating change
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void; 
   error?: string; // Optional error message for validation
 }
 
 const OverallImpressionBlock: React.FC<Props> = () => {
   const { t } = useTranslation();
 
-  // Formik setup for form handling and validation
+  // Formik setup for rating with validation
   const formik = useFormik({
     initialValues: {
       rating: 0, // Initial rating value is 0 (no rating selected)

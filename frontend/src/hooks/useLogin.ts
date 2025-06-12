@@ -1,17 +1,18 @@
-// src/hooks/useLogin.ts
+// frontend/src/hooks/useLogin.ts
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface LoginResponse {
     token: string;
-    msg?: string;
+    msg?: string;  // Optional error message from server
 }
 
 export const useLogin = () => {
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
-
+    
+    // Function to handle login request
     const login = async (email: string, password: string): Promise<Response> => {
         try {
             const response = await fetch('http://localhost:3000/api/auth/login', {
@@ -21,7 +22,8 @@ export const useLogin = () => {
                 },
                 body: JSON.stringify({ email, password })
             });
-
+            
+            // Handle failed login
             if (!response.ok) {
 
                 const errorData: LoginResponse = await response.json();
@@ -29,10 +31,14 @@ export const useLogin = () => {
                 return response;
             }
             
+            // Handle successful login
             const data: LoginResponse = await response.json();
-            // Save the token an other login data
+            
+            // Store auth token locally (consider security implications!)
             localStorage.setItem('token', data.token);
-            navigate('/dashboard'); // Forwarding after successfull loging
+
+            // Redirect to dashboard
+            navigate('/dashboard');
 
             return response;
 

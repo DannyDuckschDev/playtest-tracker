@@ -1,4 +1,4 @@
-// src/components/Dashboard.tsx
+// frontend/src/components/Dashboard.tsx
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
     <div>
       <Header onLogout={handleLogout} />
       <hr />
-      <h1>Willkommen auf deinem Dashboard, Spielautor*in!</h1>
+      <h1>Welcome to your dashboard, game author!</h1>
       <hr />
       <SurveyCreation />
     </div>

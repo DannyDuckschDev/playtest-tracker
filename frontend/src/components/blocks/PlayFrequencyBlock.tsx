@@ -1,8 +1,15 @@
+// frontend/src/components/blocks/PlayFrequenyBlock.tsx
+
+/** 
+ * This component displays a dropdown menu asking users how often they play games.
+ * It receives the selected value, change handler, and optional error message via props.
+ * Translations are handled with react-i18next, and the block uses a shared BlockHeader component.
+ */
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import BlockHeader from '../common/BlockHeader';
 
-// Define the expected Props interface
 interface Props {
   frequency: string; // Expecting a string for the selected frequency
   handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; // Event handler for select changes

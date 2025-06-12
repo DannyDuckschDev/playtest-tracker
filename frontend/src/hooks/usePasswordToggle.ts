@@ -1,20 +1,20 @@
-// src/hooks/usePasswordToggle.ts
+// frontend/src/hooks/usePasswordToggle.ts
 
 import { useState } from "react";
 
-// Custom hook to toggle the visibility of password input fields
+// Custom hook to manage toggling visibility of password input fields
 export const usePasswordToggle = () => {
-    // State variable to track the visibility of the password
+    // Tracks whether the password is currently visible
     const [visible, setVisible] = useState(false);
 
-    // Function to toggle the visibility state
+    // Toggles the visibility state
     const toggleVisibility = () => {
         setVisible(!visible); // Toggle between visible and hidden states
     };
 
-    // Determine the input type based on the visibility state
+    // Determines input type based on visibility
     const inputType = visible ? "text" : "password";
 
-    // Return the input type and the toggle function
+    // Return both the current input type and the function to toggle it
     return [inputType, toggleVisibility] as const;
 };

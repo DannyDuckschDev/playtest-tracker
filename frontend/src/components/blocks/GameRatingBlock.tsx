@@ -1,5 +1,12 @@
 //frontend/src/component/blocks/GameRatingBlock.tsx
 
+/**
+ * This component renders a set of rating questions for evaluating different aspects of a board game.
+ * It uses a shared `renderRatingQuestions` function to generate radio button inputs for each question.
+ * The selected values are managed through Formik's `setFieldValue`, and translations are handled via i18next.
+ * Each question is rated from 1 to 4, and optional error messages are displayed if validation fails.
+ */
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import BlockHeader from '../common/BlockHeader';
@@ -10,12 +17,12 @@ interface RatingQuestion {
 }
 
 interface RatingProps {
-  values: { [key: string]: number | undefined }; // Flexible values object
-  setFieldValue: (field: string, value: number) => void; // Formik setFieldValue
-  errors?: { [key: string]: string | undefined }; // Flexible error object
+  values: { [key: string]: number | undefined }; // Object holding current values for each question
+  setFieldValue: (field: string, value: number) => void; // Formik function to manually set a field value
+  errors?: { [key: string]: string | undefined }; // Optional object holding validation error messages
 }
 
-// Function to render each question
+// Function to render each rating question with radio buttons
 const renderRatingQuestions = (
   questions: RatingQuestion[],
   values: { [key: string]: number | undefined },
@@ -49,7 +56,7 @@ const renderRatingQuestions = (
 const GameRatingBlock: React.FC<RatingProps> = ({ values, setFieldValue, errors }) => {
   const { t } = useTranslation();
 
-  // Definiere die Liste der Fragen und ihre Labels
+  // Define list of rating questions and their translated labels
   const ratingQuestions: RatingQuestion[] = [
     { name: 'strategic', label: t('survey.questions.strategic') },
     { name: 'luckFactor', label: t('survey.questions.luckFactor') },
@@ -62,7 +69,7 @@ const GameRatingBlock: React.FC<RatingProps> = ({ values, setFieldValue, errors 
 
   return (
     <div className="block form-group">
-      {/* BlockHeader wie im OverallImpressionBlock verwenden */}
+      {/*  Section header (category, main question, and instruction) */}
       <BlockHeader
         category="survey.categories.feedback"
         question="survey.questions.rating"

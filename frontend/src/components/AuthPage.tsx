@@ -1,9 +1,10 @@
-// src/components/AuthPage.tsx
+// frontend/src/components/AuthPage.tsx
+
 import React from "react";
-import Login from "./Login"; // Import the Login component
-import Register from "./Register"; // Import the Register component
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap styles for basic styling
-import '../styles/auth.css'; // Import custom styles for the AuthPage
+import Login from "./Login";
+import Register from "./Register";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/auth.css';
 
 // Define the AuthPage component, which combines the Login and Register components
 const AuthPage: React.FC = () => {
