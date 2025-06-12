@@ -1,13 +1,13 @@
-// jest.config.js
+// backend/jest.config.js
 module.exports = {
-    preset: 'ts-jest', // Verwende ts-jest als Preset für TypeScript-Transformation
-    testEnvironment: 'node', // Setze die Testumgebung auf Node
+    preset: 'ts-jest', // Use ts-jest to handle TypeScript files in tests
+    testEnvironment: 'node', // Set the environment to Node.js (not browser-like)
     transform: {
-      '^.+\\.tsx?$': 'ts-jest', // Nutze ts-jest für alle .ts und .tsx Dateien
+      '^.+\\.tsx?$': 'ts-jest',// Apply ts-jest to all .ts and .tsx files
     },
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'], // Unterstützte Dateiendungen
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'], // List of file extensions Jest can process
     transformIgnorePatterns: [
-      '/node_modules/(?!your-specific-package-to-transform)', // Dies ignoriert node_modules außer wenn spezifische Pakete transformiert werden müssen
+      '/node_modules/(?!your-specific-package-to-transform)', // Ignore all node_modules except if you want to explicitly transform one
     ],
   };
   

@@ -4,6 +4,7 @@ import { QueryInterface } from 'sequelize';
 
 // Migration to create the board_games table
 module.exports = {
+  // This function is executed when the migration is applied (`npx sequelize-cli db:migrate`)
   up: async (queryInterface: QueryInterface) => {
     await queryInterface.createTable('board_games', {
       id: {
@@ -39,7 +40,7 @@ module.exports = {
       },
     });
   },
-
+  // This function reverts the migration (`npx sequelize-cli db:migrate:undo`)
   down: async (queryInterface: QueryInterface) => {
     await queryInterface.dropTable('board_games');
   },

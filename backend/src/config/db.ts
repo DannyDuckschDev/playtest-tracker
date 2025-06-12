@@ -18,7 +18,7 @@ const sequelize: Sequelize = new Sequelize(
     process.env.DB_PASS || '',
     {
         host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT) || 3307,
+        port: Number(process.env.DB_PORT) || 3307, // Note: used the port 3307 to avoid conflicts with wsl
         dialect: 'mysql',
         dialectOptions: {
             charset: 'utf8mb4', // Uses utf8mb4 as character encoding for Unicode support

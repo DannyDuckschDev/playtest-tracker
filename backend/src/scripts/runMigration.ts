@@ -1,3 +1,10 @@
+//backend src/scripts/runMigration.ts
+
+// Note: The runMigration.ts script was set up to apply Sequelize migrations programmatically. 
+// However, due to a database error during initial testing and limited backend debugging time, 
+// the migration step was not completed. Table creation was done manually for development.
+
+
 import { Sequelize } from 'sequelize'; // Import Sequelize for database connection
 import { execSync } from 'child_process'; // To execute commands
 import path from 'path'; // For path handling
